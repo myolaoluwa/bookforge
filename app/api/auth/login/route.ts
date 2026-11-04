@@ -1,0 +1,5 @@
+import {z} from 'zod';
+import {sessionClient} from '@/lib/bookforge/database';
+import {json,sameOrigin,smallJson} from '@/lib/bookforge/http';
+const schema=z.object({email:z.string().email().max(254),password:z.string().min(8).max(128)}).strict();
+export async function POST(request:Request){if(!sameOrigin(request))return json({message:'Request rejected.'},403);const db=await sessionClient();if(!db)return json({message:'Studio authentication is awaiting configuration.'},503);let input;try{input=schema.safeParse(await smallJson(request,2000))}catch{return json({message:'Check the login fields.'},400)}if(!input.success)return json({message:'Enter your email and password.'},422);const {error}=await db.auth.signInWithPassword(input.data);if(error)return json({message:'Sign in failed. Check your details or try again later.'},401);const {data:{user}}=await db.auth.getUser();const {data:profile}=await db.from('profiles').select('role').eq('id',user?.id||'').eq('status','active').maybeSingle();if(!profile){await db.auth.signOut();return json({message:'This account has no active studio role.'},403)}return json({ok:true})}

@@ -1,0 +1,18 @@
+project_id = "bookforge-publishing-studio"
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+[db]
+port = 54322
+major_version = 17
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+enable_signup = false
+[auth.rate_limit]
+sign_in_sign_ups = 10
+token_verifications = 10
+[storage]
+enabled = true
+file_size_limit = "8MiB"

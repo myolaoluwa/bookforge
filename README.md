@@ -1,17 +1,38 @@
-# Folio Studio
+# Bookforge Publishing Studio
 
-A static, responsive agency concept inspired by the supplied animated city film. Serve `dist` with a static web server. No build or dependency installation is required.
+The existing Folio project, expanded into Bookforge and refined around the original author-overwhelm animation. This is a full-stack Next App Router-compatible application using the supplied Sites Vinext runtime, TypeScript, Supabase integration, Zod, Vitest, Playwright and axe. The previous static page is preserved under `archive/folio-v1` and in Git history.
 
-The reference video has been compressed into an 800 × 1200 muted film that plays once, with a separate looping soundtrack enabled through the sound control. The sound continues independently when the video is paused. Reduced motion pauses the video by default.
+## Run and check
 
-Project briefs are generated locally as text downloads. No form submission endpoint is configured. Replace this workflow with the agency's real contact or lead endpoint before treating it as a live inquiry channel.
+```text
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 5173
+npm run lint
+npm run typecheck
+npm test
+npm run test:e2e
+npm run build
+npm start -- --port 5177
+```
 
-The layout study is illustrative; no testimonials, client projects, or performance claims are invented.
+Browser tests use the installed Microsoft Edge Chromium channel. The production build uses the portable Sites starter; no Bash is needed. Do not serve the old `dist/index.html`: `dist/` is now generated Worker output.
 
-## Visual direction
+## Cinematic implementation
 
-Blue ink, warm paper, a restrained yellow action color, and an editorial book layout built around the supplied city film. The dark hero deliberately echoes the reference; paper surfaces carry the reading and project brief sections.
+`public/reference/city-loop.mp4` is the same 800 × 1200, 20-second derivative used by the original site. Its SHA-256 matches the previous committed asset. No new film was generated. The 480 × 720 mobile derivative is 759,413 bytes; the preserved desktop derivative is 4,131,451 bytes. The original 2000 × 3000 upload remains outside the repository at its user-supplied Downloads path.
 
-`design.md` is the visual authority. Manrope provides readable navigation and body text; Source Serif 4 gives editorial headings and the book sample a publishing identity. Both load from Google Fonts. Marketing text uses regular and semibold weights, a 14 / 16 / 20 / 24 / 28 / 36 / 40 / 48 / 60 / 72 type ramp, and body text starts at 16px. Palette roles are declared in `dist/style.css`.
+The existing `ReferenceFilm` component supports the full-viewport hero. One sharp video is blended into a solid ink canvas using a monochromatic side mask; there is no duplicate background video. A poster and immediate server-rendered headline/CTA make playback optional. `prefers-reduced-motion` and data saving suppress automatic playback; explicit play remains available. Film playback pauses outside the viewport and while the tab is hidden. There is no scroll hijacking.
 
-The film entrance is the single decorative motion concept. The marquee, scroll reveals, word animations, equalizer loop, glass panels, decorative numbering, and repeated uppercase labels have been removed. The soundtrack retains its loop because it was explicitly requested. The book comparison changes without animation.
+The soundtrack is the preserved `ambience.mp3`, extracted earlier from the original video. It stays separate so it can loop continuously when the film is paused. “Experience with sound” and the persistent mute toggle require deliberate interaction. Volume fades over 450 ms to a restrained 35%; the audio is never enabled automatically. Both controls share one audio state. Story beats follow actual video time and pause with it.
+
+## Pages and data
+
+The app includes eight service pages, Goodreads scopes with query preselection, a staged proposal, portfolio search/filters and case study routes, about/process/contact, permissioned team/article/testimonial routes, policy pages and admin content/inquiry screens. Empty galleries are honest; studio illustrations are labeled and never presented as client work.
+
+Supabase migrations provide RLS-backed roles, content, private inquiries, notes, revisions, audit records, storage policies and an idempotent transactional mail outbox. Admin authorization is checked on the server and in RLS. Inquiry and email code remains unavailable until real configuration is supplied; preview mode can download a local brief and never pretends to send one.
+
+## Configuration and remaining launch gates
+
+Use `.env.example` and [the deployment runbook](docs/deployment-runbook.md). Credentials stay server-side and out of source. The app defaults to noindex staging. The custom domain, contact address, real team biographies, client asset permissions, testimonials and legal policies need owner confirmation. Original Sites access was restored on 4 November 2026; the existing Site ID and private audience are preserved. See implementation status for the latest publication result.
+
+See [implementation status](docs/implementation-status.md), [QA evidence](docs/qa-checklist.md), [cinematic handoff](docs/cinematic-handoff.md), [content inventory](docs/content-inventory.md) and [SEO notes](docs/seo-audit.md). The local PostgreSQL suite uses disposable test identities and minimal Supabase platform schemas; hosted Auth/Storage and real transactional mail still need end-to-end verification.

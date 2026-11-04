@@ -1,0 +1,9 @@
+import Link from 'next/link';
+import {notFound} from 'next/navigation';
+import {CTA,PageIntro,Arrow} from '@/components/bookforge/ui';
+import {services} from '@/lib/bookforge/content';
+import {metadata,paragraphs} from '@/lib/bookforge/seo';
+import {published} from '@/lib/bookforge/database';
+import {Goodreads} from '@/components/bookforge/goodreads';
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const s=services.find(s=>s.slug===slug);return metadata(s?.name||'Service not found',s?.intro||'Explore Bookforge publishing services.','/services/'+slug)}
+export default async function ServicePage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const service=services.find(s=>s.slug===slug);if(!service)notFound();if(slug==='goodreads-author-setup')return <Goodreads/>;const overrides=await published('services');const saved=overrides.find(e=>e.slug===slug);return <><PageIntro label={service.category} title={saved?.title||service.name}><p className="lead">{service.headline}</p><p>{saved?.summary||service.intro}</p><CTA service={slug}/></PageIntro><section className="paper-section"><div className="wrap detail-grid"><div><h2>What we shape<br/><em>together.</em></h2><ul className="deliverables">{service.deliverables.map(d=><li key={d}>{d}</li>)}</ul></div><div><h3>Before we begin</h3><p>{service.prepare}</p><h3>A clear scope matters</h3><p>{service.note}</p>{saved?.body&&paragraphs(saved.body).map((p,i)=><p key={i}>{p}</p>)}<p className="fine-print">Deliverables are confirmed in your proposal. Timing and revisions depend on the agreed scope.</p></div></div></section><section className="wrap page-end"><h2>Tell us about your book.</h2><CTA service={slug}/><Link className="text-link" href="/services">Compare all services <Arrow/></Link></section></>}

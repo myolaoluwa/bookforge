@@ -1,0 +1,7 @@
+import Image from 'next/image';
+import {notFound} from 'next/navigation';
+import {published} from '@/lib/bookforge/database';
+import {metadata,paragraphs} from '@/lib/bookforge/seo';
+import {PageIntro,CTA} from '@/components/bookforge/ui';
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const item=(await published('projects')).find(e=>e.slug===slug);return metadata(item?.seo_title||item?.title||'Project not found',item?.seo_description||item?.summary||'Bookforge project gallery.','/portfolio/'+slug)}
+export default async function Project({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const entry=(await published('projects')).find(e=>e.slug===slug);if(!entry)notFound();return <><PageIntro label="From the studio" title={entry.title}><p>{entry.summary}</p></PageIntro><section className="paper-section"><div className="wrap detail-grid"><div>{typeof entry.data.cover==='string'&&<Image className="detail-cover" src={entry.data.cover} alt={String(entry.data.alt||'')} width={480} height={640}/>}</div><div>{paragraphs(entry.body).map((p,i)=><p key={i}>{p}</p>)}<h3>Deliverables</h3><ul>{Array.isArray(entry.data.deliverables)&&entry.data.deliverables.map((d,i)=><li key={i}>{String(d)}</li>)}</ul>{typeof entry.data.author==='string'&&<p>Author credit: {entry.data.author}</p>}<CTA>Discuss a similar book</CTA></div></div></section></>}

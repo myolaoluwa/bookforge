@@ -1,0 +1,10 @@
+route,candidate,intent,country,status,source,confidence
+/,book formatting and cover design services,commercial,not selected,hypothesis,vision,unverified
+/services/manuscript-editing,manuscript editing services,commercial,not selected,hypothesis,vision,unverified
+/services/ebook-formatting,ebook formatting services,commercial,not selected,hypothesis,vision,unverified
+/services/paperback-formatting,paperback formatting services,commercial,not selected,hypothesis,vision,unverified
+/services/hardcover-formatting,hardcover book formatting,commercial,not selected,hypothesis,vision,unverified
+/services/kdp-publishing-preparation,KDP publishing preparation,commercial,not selected,hypothesis,vision,unverified
+/services/book-cover-design,professional book cover design,commercial,not selected,hypothesis,vision,unverified
+/services/book-marketing,book marketing services for authors,commercial,not selected,hypothesis,vision,unverified
+/services/goodreads-author-setup,Goodreads author profile setup,commercial,not selected,hypothesis,vision,unverified

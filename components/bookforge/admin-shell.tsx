@@ -1,0 +1,4 @@
+import Link from 'next/link';
+import {Logout} from './admin';
+const links=[['','Overview'],['inquiries','Inquiries'],['projects','Portfolio'],['media','Media'],['services','Services'],['packages','Goodreads scopes'],['articles','Articles'],['team','Team'],['testimonials','Testimonials'],['redirects','Redirects'],['settings','Settings'],['activity','Activity']];
+export function AdminShell({section='',name,role,children}:{section?:string;name:string;role:string;children:React.ReactNode}){return <section className="wrap admin-shell"><aside><p>{name||'Studio account'}</p><p className="fine-print">{role}</p><nav className="admin-nav" aria-label="Studio administration">{links.filter(([slug])=>!(role==='viewer'&&['inquiries','activity'].includes(slug))).map(([slug,title])=><Link key={slug} href={'/admin'+(slug?'/'+slug:'')} aria-current={slug===section?'page':undefined}>{title}</Link>)}</nav><Logout/></aside><div className="admin-content">{children}</div></section>}
