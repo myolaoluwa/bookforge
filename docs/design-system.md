@@ -25,3 +25,9 @@ The film is the only continuous visual motion. Supporting captions animate for 2
 The sample viewer uses native pressed-state buttons and a labeled scrollable reading region. Enlarge mode increases reading type and presents print pages singly. Native form controls support the service finder and format choices. Controls wait for client readiness to prevent lost interactions. The booking journey remains accessible without an account; quote and resource links render on the server.
 
 Pricing uses structured scope rows and honest unpublished-rate states. Terms, resources and the sample proposal favor readable editorial lists rather than repeated card grids. Calendar links appear only for a configured credential-free HTTPS destination. Reduced-motion and deliberate audio behavior are preserved.
+
+## Responsive and audio preference update
+
+The latest user instruction supersedes the earlier deliberate-only sound startup. Audio now requests audible autoplay after hydration with a compact, persistent 48px play/pause control. Browser denial shows a truthful one-tap play state; no workaround bypasses browser policy. User pause is preserved during client navigation. Film reduced-motion/data-saving behavior remains separate and unchanged.
+
+Portrait mobile film framing is lower, with an upper fade into the ink canvas. This keeps the character below the main message. Mobile narrative captions occupy reserved layout space, avoiding CTA collisions and variable-height shifts between normal narrative beats. Short landscape layouts use a compact headline with intact word spacing. Menus scroll within the available screen, and controls respect device safe areas. No horizontal overflow is hidden globally to conceal layout errors.

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {ReferenceFilm} from './shell';
 import {Arrow,CTA} from './ui';
-import {setSound} from './sound';
 import {beatAt,storyBeats,taskAt} from '@/lib/bookforge/cinema';
 
 const subscribeReady=()=>()=>{};
@@ -17,12 +16,12 @@ export function CinematicHero(){const hydrated=useSyncExternalStore(subscribeRea
   <div className="cinema-shade" aria-hidden="true"/>
   <div className="wrap cinema-content">
     <p className="kicker">For the story only you could write.</p>
-    <h1 id="cinematic-title"><span>You wrote<br/>the book.</span><em>We’ll handle<br/>what comes next.</em></h1>
+    <h1 id="cinematic-title"><span>You wrote<br/>{' '}the book.</span><em>We’ll handle<br/>{' '}what comes next.</em></h1>
     <p className="hero-description">Book editing, formatting, cover design & publishing support. From your last full stop to your first reader.</p>
     <div className="cinema-actions"><CTA>Get a tailored quote</CTA><Link className="quiet-link" href="/services">Explore the studio <Arrow/></Link></div>
   </div>
   <div className="cinema-story" aria-hidden="true"><span className="story-folio">The next chapter</span><p key={beat}>{storyBeats[beat].text}</p><span className="story-task" key={task}>{task||storyBeats[beat].label}</span><div className="story-progress">{storyBeats.map((_,i)=><span key={i} data-active={i===beat}/>)}</div></div>
-  <div className="cinema-bottom wrap"><Link href="#craft" className="cinema-scroll"><Arrow down/><span>Discover the craft</span></Link><div className="cinema-controls"><button type="button" disabled={!hydrated} onClick={()=>void setSound(true)}>Experience with sound <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg></button><button type="button" aria-label={playing?'Pause cinematic film':'Play cinematic film'} onClick={()=>void toggle()} disabled={unavailable||!hydrated}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={playing?'M9 5v14M15 5v14':'m8 5 11 7-11 7Z'}/></svg></button></div></div>
+  <div className="cinema-bottom wrap"><Link href="#craft" className="cinema-scroll"><Arrow down/><span>Discover the craft</span></Link><div className="cinema-controls"><button type="button" aria-label={playing?'Pause cinematic film':'Play cinematic film'} onClick={()=>void toggle()} disabled={unavailable||!hydrated}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={playing?'M9 5v14M15 5v14':'m8 5 11 7-11 7Z'}/></svg></button></div></div>
   {unavailable&&<p className="cinema-fallback" role="status">The film is unavailable. Your next chapter can still begin below.</p>}
  </section>
 }

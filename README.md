@@ -23,7 +23,7 @@ Browser tests use the installed Microsoft Edge Chromium channel. The production 
 
 The existing `ReferenceFilm` component supports the full-viewport hero. One sharp video is blended into a solid ink canvas using a monochromatic side mask; there is no duplicate background video. A poster and immediate server-rendered headline/CTA make playback optional. `prefers-reduced-motion` and data saving suppress automatic playback; explicit play remains available. Film playback pauses outside the viewport and while the tab is hidden. There is no scroll hijacking.
 
-The soundtrack is the preserved `ambience.mp3`, extracted earlier from the original video. It stays separate so it can loop continuously when the film is paused. “Experience with sound” and the persistent mute toggle require deliberate interaction. Volume fades over 450 ms to a restrained 35%; the audio is never enabled automatically. Both controls share one audio state. Story beats follow actual video time and pause with it.
+The soundtrack is the preserved `ambience.mp3`, extracted earlier from the original video. It loops independently when the film is paused. The latest user preference requests audible automatic playback at a restrained volume where the browser allows it. Startup occurs after the compact control is ready. Browser policy can deny audible autoplay; in that case the same control becomes a one-tap play button. It pauses immediately, preserves the current playback position, and does not re-enable itself after a user pause during normal client navigation. No silent-start/unmute workaround or unrelated-tap unlock is used. Manual resume fades to 35% over 450 ms where programmatic volume is supported. Story beats remain tied to actual film time.
 
 ## Pages and data
 
@@ -52,3 +52,9 @@ The CMS project editor now accepts interior/detail images as `published-media-pa
 Six versioned 1200 x 630 social preview cards are selected by page category. Open Graph and large-image Twitter/X metadata are server-rendered with explicit image URL, PNG type, dimensions and alt text. The safe origin fallback is the existing hosted Site URL; set `SITE_ORIGIN` to the final public HTTPS domain at launch. No social accounts or app IDs are invented.
 
 Instagram feed (1080 x 1350) and Story (1080 x 1920) graphics are separate exports under `public/brand/share`. Story graphics leave space for a native Link sticker. See [the sharing guide](docs/social-sharing-guide.md) for file mapping, captions and launch checks. Regenerate artwork with `node scripts/generate-social-cards.mjs`. Current access remains private, so real Facebook crawler/cache validation remains a public-launch step.
+
+## Responsive layout and sound update
+
+`app/responsive.css` provides layout corrections for narrow phones, short landscape screens, tablets and wide monitors. Mobile narrative copy participates in layout with reserved space rather than overlapping the CTA. The film is reframed lower on portrait phones without stretching. Footer columns, menu scrolling, form order, sample controls and safe-area insets are covered. Primary hero actions fit the tested first viewports from 320px phones to 2560px monitors, including landscape phones.
+
+The single 48px soundtrack control replaces the larger sound invitation. The autoplay request may be blocked by browser policy; a blocked state is never displayed as playing. See `docs/responsive-and-audio-handoff.md` for evidence and limits. The earlier deliberate-start preference was superseded by the user's default-sound instruction.

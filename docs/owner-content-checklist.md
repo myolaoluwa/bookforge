@@ -1,6 +1,6 @@
 # Bookforge: what to provide for the trust and booking release
 
-The website now has explicitly labeled slots for real work, team introductions and author feedback. It does not invent identities, testimonials, prices or appointment availability. The original film and sound behavior are preserved.
+The website now has explicitly labeled slots for real work, team introductions and author feedback. It does not invent identities, testimonials, prices or appointment availability. The original film and soundtrack assets are preserved. Sound startup follows the latest user preference, with a browser-blocked fallback and compact play/pause control.
 
 ## 1. Work samples — start with two to four projects
 
