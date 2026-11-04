@@ -46,3 +46,9 @@ Use [the owner content checklist](docs/owner-content-checklist.md) to supply wor
 Apply both SQL migrations in order. `202611040002_inquiry_platform.sql` adds the private platform selection used by the updated form. Format choices, platform and manuscript stage survive review/back navigation and the local brief download. The existing save/outbox pipeline is retained; real delivery still requires credentials and end-to-end verification.
 
 The CMS project editor now accepts interior/detail images as `published-media-path | descriptive alt text`, one per line. Images remain permissioned and must be published as Media before public use. No manuscript upload, author account portal, payment collection or analytics has been exposed as working functionality.
+
+## Social sharing
+
+Six versioned 1200 x 630 social preview cards are selected by page category. Open Graph and large-image Twitter/X metadata are server-rendered with explicit image URL, PNG type, dimensions and alt text. The safe origin fallback is the existing hosted Site URL; set `SITE_ORIGIN` to the final public HTTPS domain at launch. No social accounts or app IDs are invented.
+
+Instagram feed (1080 x 1350) and Story (1080 x 1920) graphics are separate exports under `public/brand/share`. Story graphics leave space for a native Link sticker. See [the sharing guide](docs/social-sharing-guide.md) for file mapping, captions and launch checks. Regenerate artwork with `node scripts/generate-social-cards.mjs`. Current access remains private, so real Facebook crawler/cache validation remains a public-launch step.

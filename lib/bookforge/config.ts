@@ -1,6 +1,10 @@
+export function resolveSiteOrigin(value:string|undefined){
+ const fallback='https://folio-book-studio.myolaoluwa.chatgpt.site';
+ try{const url=new URL(value||fallback);return ['https:','http:'].includes(url.protocol)&&!url.username&&!url.password?url.origin:fallback}catch{return fallback}
+}
 export const site = {
  name:'Bookforge Publishing Studio',
- origin:process.env.SITE_ORIGIN || 'http://localhost:5173',
+ origin:resolveSiteOrigin(process.env.SITE_ORIGIN),
  indexable:process.env.SITE_INDEXABLE === 'true',
  contact:process.env.CONTACT_EMAIL || '',
 };

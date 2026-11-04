@@ -72,3 +72,7 @@ Validation after the refinement: TypeScript passed, ESLint passed, 43 unit/integ
 - Performance samples earlier in this document belong to the earlier build. They are not measurements of this expanded release. No live calendar booking, payment, production database migration or email delivery is claimed by local tests.
 
 The publication workflow runs the production build and packages the exact pushed source before saving/deploying. Its final build/publication outcome is reported in the session handoff. Owner data dependencies are listed in `owner-content-checklist.md`.
+
+## Social metadata verification
+
+TypeScript and ESLint passed. All 79 unit/mocked integration tests passed, including route-to-card selection, origin safety/normalization, real PNG dimensions and size budgets, and separate Instagram export sizes. Four focused desktop/mobile browser scenarios passed: crawler-style server HTML and image serving, plus all-public-route metadata/heading regression. These local checks do not claim a successful public Meta scrape or a real Instagram post. Home, editing and Story artwork were visually inspected; no clipping was observed. The six landscape PNGs are 66-74 KB and Instagram exports are approximately 92/101 KB. The build/package/publication outcome is reported in the session handoff.

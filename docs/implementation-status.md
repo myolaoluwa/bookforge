@@ -35,3 +35,9 @@ The existing inquiry now supports undecided authors, format selection, publishin
 `content/studio-profile.json` holds approved public rates, scopes and business policies; empty values retain honest quote/pending states. `CONSULTATION_URL` optionally overrides the approved HTTPS calendar URL. No invented prices, appointments, identities, work history or endorsements were added. See `owner-content-checklist.md` for exact inputs and where each appears.
 
 Live inquiry delivery, real calendar bookings and real CMS publication require their existing external configuration. An authenticated author workspace, full-manuscript intake, live invoices/payments and analytics remain later delivery work as specified in the roadmap; no such live functionality is claimed by this release.
+
+## Social sharing release
+
+Added six original editorial social cards (1200 x 630 PNG), one Instagram feed export (1080 x 1350) and one Story export (1080 x 1920). Each file is below 101 KB. Artwork uses the existing local fonts, palette, mark and an original typographic book illustration; it does not represent a client publication. `lib/bookforge/social.ts` provides page-specific artwork and social copy. Open Graph and Twitter/X metadata include absolute image URLs, dimensions, type and alt text in server HTML. Root metadata provides a branded fallback.
+
+Default canonical/share URLs now use the known hosted origin rather than localhost. Explicit `SITE_ORIGIN` still controls the launch domain. Origin parsing rejects invalid schemes and embedded credentials. The audience and noindex staging setting are preserved. No social posts were sent. Public Meta scrape/cache verification and native Instagram link placement remain launch checks documented in `social-sharing-guide.md`.
