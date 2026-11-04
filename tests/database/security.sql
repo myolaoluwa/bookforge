@@ -38,9 +38,10 @@ do $$begin
 end;$$;
 reset role;
 set local role service_role;
-select * from public.submit_inquiry('10000000-0000-4000-8000-000000000001','hash-a','rate-test','{"name":"Test author","email":"test@example.com","service":"ebook-formatting","stage":"draft","description":"A test manuscript for the integration suite.","consent":true}');
-select * from public.submit_inquiry('10000000-0000-4000-8000-000000000001','hash-a','rate-test','{"name":"Test author","email":"test@example.com","service":"ebook-formatting","stage":"draft","description":"A test manuscript for the integration suite.","consent":true}');
+select * from public.submit_inquiry('10000000-0000-4000-8000-000000000001','hash-a','rate-test','{"name":"Test author","email":"test@example.com","service":"ebook-formatting","stage":"unsure","formats":["ebook","paperback"],"platform":"amazon-kdp","description":"A test manuscript for the integration suite.","consent":true}');
+select * from public.submit_inquiry('10000000-0000-4000-8000-000000000001','hash-a','rate-test','{"name":"Test author","email":"test@example.com","service":"ebook-formatting","stage":"unsure","formats":["ebook","paperback"],"platform":"amazon-kdp","description":"A test manuscript for the integration suite.","consent":true}');
 do $$declare saved_id uuid;begin
+ if not exists(select from public.inquiries where publishing_platform='amazon-kdp' and formats='["ebook","paperback"]'::jsonb and stage='unsure') then raise exception 'Format/platform choices were not preserved';end if;
  if (select count(*) from public.inquiries)<>1 then raise exception 'Duplicate inquiry';end if;
  if (select count(*) from public.email_events)<>2 then raise exception 'Transactional outbox missing or duplicated';end if;
  begin perform * from public.submit_inquiry('10000000-0000-4000-8000-000000000001','different','rate-test','{}');raise exception 'Changed retry accepted';exception when raise_exception then if sqlerrm<>'idempotency_conflict' then raise;end if;end;

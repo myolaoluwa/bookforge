@@ -36,3 +36,13 @@ Supabase migrations provide RLS-backed roles, content, private inquiries, notes,
 Use `.env.example` and [the deployment runbook](docs/deployment-runbook.md). Credentials stay server-side and out of source. The app defaults to noindex staging. The custom domain, contact address, real team biographies, client asset permissions, testimonials and legal policies need owner confirmation. Original Sites access was restored on 4 November 2026; the existing Site ID and private audience are preserved. See implementation status for the latest publication result.
 
 See [implementation status](docs/implementation-status.md), [QA evidence](docs/qa-checklist.md), [cinematic handoff](docs/cinematic-handoff.md), [content inventory](docs/content-inventory.md) and [SEO notes](docs/seo-audit.md). The local PostgreSQL suite uses disposable test identities and minimal Supabase platform schemas; hosted Auth/Storage and real transactional mail still need end-to-end verification.
+
+## Author trust and booking features
+
+The public release adds `/pricing`, `/consultation`, `/sample-proposal`, `/working-together`, `/resources` and three checklist detail routes. Home and service pages connect samples, scope, FAQs, people and relevant author feedback to the quote flow. The sample viewer is an original labeled demonstration; real projects use the existing permissioned CMS and approved media.
+
+Use [the owner content checklist](docs/owner-content-checklist.md) to supply work, biographies, feedback and approved commercial details. Edit `content/studio-profile.json` for public pricing, timing and policies. A rate appears only when amount, currency and qualifying scope are supplied. Set an approved HTTPS consultation URL in that file or `CONSULTATION_URL`; blank configuration shows an honest pending state.
+
+Apply both SQL migrations in order. `202611040002_inquiry_platform.sql` adds the private platform selection used by the updated form. Format choices, platform and manuscript stage survive review/back navigation and the local brief download. The existing save/outbox pipeline is retained; real delivery still requires credentials and end-to-end verification.
+
+The CMS project editor now accepts interior/detail images as `published-media-path | descriptive alt text`, one per line. Images remain permissioned and must be published as Media before public use. No manuscript upload, author account portal, payment collection or analytics has been exposed as working functionality.

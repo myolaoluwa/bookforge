@@ -11,7 +11,7 @@ Source of truth: `website vision.md` and the supplied Bookforge execution prompt
 - [ ] P4 launch SEO/content gate: Goodreads tiers and all three inquiry scope mappings implemented, server metadata/robots/sitemap and honest empty states present. Query spot-check recorded in `docs/seo-audit.md`; no keyword volume claims. Real specialist-reviewed articles, people and case studies await approval. Indexing remains disabled.
 - [ ] P5 live-delivery gate: staged form, readiness state, download fallback, streaming request limits, consent, server validation, transactional rate limit/idempotency and mail outbox implemented and locally tested. Provider failures and uncertain delivery states remain pending rather than fake success. Real DB/Turnstile/sender/inbox verification still required. No public manuscript attachments.
 - [x] P6 cinematic refinement: the original `ReferenceFilm` and film are preserved, now the centerpiece of a full-viewport hero. A solid ink canvas and side mask avoid duplicate video downloads; mobile receives a 759 KB derivative of the same footage. Persistent H1/CTA, playback-time storytelling, preference-aware muted autoplay, explicit pause/play and one deliberately enabled looping soundtrack. Hero and service content are visible without JavaScript; no scroll hijacking.
-- [ ] P7 public launch: local browser, a11y, migration and production-build checks are recorded in `docs/qa-checklist.md`. Original Sites access is restored; this checked source is prepared for staging publication. Publication outcome is reported in the session handoff. Hosted integration tests, canonical domain/TLS, mail verification, approved business content, policy review, backup restore and monitoring remain external gates.
+- [ ] P7 public launch: local browser, a11y, migration and production-build checks are recorded in `docs/qa-checklist.md`. Original Sites access is restored and the cinematic refinement was privately published. The trust release uses the same identity and private audience; its publication outcome is reported in the session handoff. Hosted integration tests, canonical domain/TLS, mail verification, approved business content, policy review, backup restore and monitoring remain external gates.
 - [ ] P8: Post-launch measurement. Requires a real launch and baseline data.
 
 ## Reporting rule
@@ -25,3 +25,13 @@ See `docs/cinematic-handoff.md` for preserved asset hashes, exact files changed,
 ## Professional editorial refinement
 
 The homepage was recomposed around the existing film, with a clearer ivory/copper headline hierarchy, 16px explanatory copy, quieter narrative captions, clean section boundaries, larger labeled cover/interior studies, a simplified Goodreads section and consistent proposal calls to action. Shared page typography, service listings, packages, empty states and footer were also refined. Responsive and accessibility verification is recorded in the QA checklist.
+
+## Author trust and booking release
+
+Implemented the first-release recommendations in `author-trust-and-booking-roadmap.md`: interactive cover/print/ebook demonstration viewer with an enlarged reading mode; CMS-backed selected work, people and service-matched feedback; labeled empty content slots; scope/pricing guidance; service finder; optional consultation link; sample proposal with a downloadable outline; working-agreement guidance; practical FAQs; and three original author checklists.
+
+The existing inquiry now supports undecided authors, format selection, publishing-platform selection, expanded review and a local brief preserving those choices. Migration `202611040002_inquiry_platform.sql` persists the platform privately. The CMS accepts up to 12 descriptive interior/detail images per project, with published-media paths, and the public case study displays them. Admin inquiry records show the new production details.
+
+`content/studio-profile.json` holds approved public rates, scopes and business policies; empty values retain honest quote/pending states. `CONSULTATION_URL` optionally overrides the approved HTTPS calendar URL. No invented prices, appointments, identities, work history or endorsements were added. See `owner-content-checklist.md` for exact inputs and where each appears.
+
+Live inquiry delivery, real calendar bookings and real CMS publication require their existing external configuration. An authenticated author workspace, full-manuscript intake, live invoices/payments and analytics remain later delivery work as specified in the roadmap; no such live functionality is claimed by this release.

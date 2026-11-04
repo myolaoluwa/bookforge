@@ -46,7 +46,9 @@ No inquiry attachments are accepted. Rate limiting and idempotency are transacti
 
 ## Hosting and DNS
 
-Preserve `.openai/hosting.json` project ID `appgprj_6aeaf6fc3100819187e3dd9f5fec722c`. The Sites connector currently returns `project_not_found` for that exact ID, and listing accessible sites confirms it is not available to the current connection. Publication is blocked. Do not create a replacement site or use another unrelated project. Restore access through the account/workspace that owns the original Site, then obtain source credentials, use the Sites source helper to push/package this exact tree, and deploy the matching saved version. Keep the current audience private unless the owner requests otherwise.
+Preserve `.openai/hosting.json` project ID `appgprj_6aeaf6fc3100819187e3dd9f5fec722c`. Access was restored and the cinematic refinement was privately published. Obtain fresh source credentials, use the Sites source helper to push/package the checked tree, and publish the matching saved version. Preserve the current owner-only audience unless the owner requests otherwise. Do not create a replacement project.
+
+For this trust release, apply `202611040002_inquiry_platform.sql` after the foundation migration. Set an approved HTTPS `CONSULTATION_URL` or the public profile's consultation URL only when the real calendar is ready. Supply prices and actual business policies through `content/studio-profile.json`. See `owner-content-checklist.md`.
 
 The proposed `bookforgepublishing.ink` domain is not verified. Before custom-domain launch confirm ownership, supported hosting/domain binding, authoritative DNS and TLS, then update `SITE_ORIGIN`. Confirm public email provisioned; do not claim the domain is live merely from a local DNS answer. Check robots, sitemap, canonical tags and all redirects on the deployed origin. Public indexing remains off by default.
 

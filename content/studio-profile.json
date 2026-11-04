@@ -1,0 +1,23 @@
+{
+  "businessName": "",
+  "location": "",
+  "timezone": "",
+  "responseTime": "",
+  "consultationUrl": "",
+  "consultationLength": "",
+  "artworkPolicy": "",
+  "retentionPolicy": "",
+  "cancellationPolicy": "",
+  "paymentPolicy": "",
+  "supportPolicy": "",
+  "pricing": [
+    {"service":"manuscript-editing","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"ebook-formatting","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"paperback-formatting","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"hardcover-formatting","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"book-cover-design","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"kdp-publishing-preparation","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"book-marketing","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""},
+    {"service":"goodreads-author-setup","from":null,"currency":"USD","scope":"","turnaround":"","revisions":""}
+  ]
+}

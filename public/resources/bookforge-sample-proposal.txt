@@ -1,0 +1,50 @@
+BOOKFORGE — ILLUSTRATIVE PROPOSAL OUTLINE
+
+This is a planning example, not a quote, contract or offer.
+Complete the following for an actual agreed project.
+
+PROJECT
+Book title / author:
+Genre / word count / manuscript version:
+Editions / platforms / intended reader:
+
+SCOPE
+Included services and exact deliverables:
+Excluded services and third-party costs:
+Source materials and permissions supplied by author:
+
+SCHEDULE
+Start conditions:
+Sample / first direction:
+Author feedback windows:
+Full proof / final handoff:
+Effect of late materials or scope changes:
+
+REVIEWS AND CORRECTIONS
+Included review rounds:
+Approval method and authorized approver:
+Provider-error correction responsibility:
+Author rewrite and additional-edition policy:
+Post-delivery support window:
+
+INVESTMENT
+Price / currency / taxes:
+Payment stages and due dates:
+Payment method:
+Cancellation and refund terms:
+
+RIGHTS AND PRIVACY
+Author rights and supplied permissions:
+Design usage rights and transfer conditions:
+Artwork/font licensing and source-file inclusion:
+AI-tool and subcontractor disclosure:
+Private file channel and authorized access:
+Retention and deletion arrangements:
+Separate portfolio permission, if any:
+
+HANDOFF
+Approved version:
+Final file list:
+Known limitations and remaining checks:
+Author upload / printing / distribution responsibilities:
+Support contact and next-step checklist:

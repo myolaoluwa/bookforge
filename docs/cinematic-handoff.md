@@ -1,3 +1,5 @@
+> Historical cinematic implementation record. The following describes the earlier composition and its original local evidence. The later editorial pass removed the blurred still extension, and Sites access was restored with a successful private publication. Current trust features and owner inputs are recorded in `implementation-status.md`, `design-system.md` and `owner-content-checklist.md`. Earlier performance samples do not measure the trust release.
+
 ﻿# Cinematic implementation handoff
 
 ## Preserved assets and component

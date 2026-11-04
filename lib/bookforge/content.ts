@@ -21,7 +21,7 @@ export const steps = [
  ['Check the details','Review the files against the agreed brief and the intended platform requirements.'],
  ['Receive your handoff','Take away final deliverables and a clear checklist for your next step.']
 ];
-export const publicRoutes = ['/', '/services', ...services.map(s=>`/services/${s.slug}`),'/portfolio','/about','/process','/testimonials','/insights','/contact','/request-a-proposal','/privacy','/terms','/cookies','/accessibility'];
+export const publicRoutes = ['/', '/services', ...services.map(s=>`/services/${s.slug}`),'/portfolio','/about','/process','/testimonials','/insights','/contact','/request-a-proposal','/privacy','/terms','/cookies','/accessibility','/pricing','/consultation','/sample-proposal','/working-together','/resources','/resources/prepare-your-manuscript','/resources/review-your-book-proof','/resources/understand-your-handoff'];
 export const resources = ['projects','services','packages','team','testimonials','articles','media','settings','redirects'] as const;
 export type Resource = typeof resources[number];
 export type Entry = {id:string;slug:string;title:string;summary:string;body:string;status:'draft'|'published'|'archived';permission_approved:boolean;data:Record<string,unknown>;seo_title:string|null;seo_description:string|null;updated_at:string};

@@ -17,3 +17,11 @@ The following paper section introduces the deliverables and existing book study.
 `app/editorial.css` refines the shared typography, service pages, proposal surfaces and footer. The home page moves from manuscript overwhelm to disciplines, original cover/interior studies, a clear process, Goodreads support and a final proposal invitation. The redundant book interlude and decorative shelf were removed. Cormorant display type and Manrope body type remain self-hosted. Main explanatory copy is 16px or larger, with smaller navigation and captions. Copper is the single active accent; ivory and ink carry the composition. All content remains visible with motion disabled.
 
 The film is the only continuous visual motion. Supporting captions animate for 200?300ms on narrative changes; the five marks represent actual narrative beats. Hover movement is limited to links. No scroll reveals, glass, gradient text, invented proof or replacement film were added.
+
+## Trust and booking surfaces
+
+`app/trust.css` extends the existing paper/ink editorial system without replacing the cinematic hero. Work, team and endorsement slots are explicitly labeled; no stock portraits or counterfeit book credits simulate missing client evidence. Original demonstrations remain separate from real projects.
+
+The sample viewer uses native pressed-state buttons and a labeled scrollable reading region. Enlarge mode increases reading type and presents print pages singly. Native form controls support the service finder and format choices. Controls wait for client readiness to prevent lost interactions. The booking journey remains accessible without an account; quote and resource links render on the server.
+
+Pricing uses structured scope rows and honest unpublished-rate states. Terms, resources and the sample proposal favor readable editorial lists rather than repeated card grids. Calendar links appear only for a configured credential-free HTTPS destination. Reduced-motion and deliberate audio behavior are preserved.

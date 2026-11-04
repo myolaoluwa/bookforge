@@ -8,8 +8,8 @@ Local validation distinguishes implemented code from a configured service. All t
 |---|---|---|
 | Lint | `npm run lint` | Passed |
 | TypeScript | `npm run typecheck` | Passed |
-| Unit + mocked server integration | `npm test` | 43 tests passed |
-| Browser | `npm run test:e2e` | 28 passed (1.9 minutes) |
+| Unit + mocked server integration | `npm test` | 57 tests passed |
+| Browser | `npm run test:e2e` | 40 scenarios verified; see trust-release run details below |
 | Production artifact | `node <Sites plugin>/scripts/build-site.mjs` | Passed on final source |
 | PostgreSQL migration/RLS | `psql` with bootstrap, migration and `tests/database/security.sql` | Passed on isolated local PostgreSQL 18 |
 | Media integrity | `node scripts/media-inventory.mjs` | Passed: original desktop derivative byte-identical to prior commit |
@@ -60,3 +60,15 @@ Screenshots and machine-readable media/performance evidence are under ignored `o
 Full-page screenshots at 1440 ? 900 and 390 ? 844 are retained at `outputs/review/refined-desktop.png` and `refined-mobile.png`. Inspected the hero, service hierarchy, cover/interior study, process, Goodreads content, final invitation and footer. Corrected an apostrophe encoding issue and desktop sound-control overlap. No horizontal overflow in either reviewed layout. The CTA fits in the first viewport. These captures use reduced motion so composition can be reviewed independently of the film. Earlier performance figures above describe the earlier build and are not a new performance claim for this refinement.
 
 Validation after the refinement: TypeScript passed, ESLint passed, 43 unit/integration tests passed, and 28 Playwright tests passed across desktop/mobile Chromium. The browser suite includes axe checks, no-JavaScript content, keyboard navigation, deliberate sound activation, reduced-motion playback and hero checks at narrow mobile, tablet, laptop and ultrawide widths.
+
+## Trust and booking release verification
+
+- ESLint and strict TypeScript passed. Unit/mocked integration tests: 57 passed across seven files.
+- The expanded Playwright suite contains 40 desktop/mobile scenarios. The final full run passed 39 and identified one mobile quote-sidebar heading-order issue. After correcting the heading, both desktop and mobile affected accessibility scenarios passed on rerun. All 40 scenarios have a passing result; this is not a claim of a single all-green 40-test run after that final correction.
+- New browser coverage includes sample view switching and enlarged reading type, service recommendation/query preselection, format/platform persistence through back/review/download, honest unconfigured calendar and client slots, downloadable proposal text, metadata and axe checks on new trust pages.
+- The original and second platform migrations were applied to the isolated PostgreSQL 18 test database. The RLS/roles, publication, audit, idempotency and outbox suite passed with added assertions that formats, platform and undecided stage are preserved. The test transaction was rolled back and the local test server was stopped.
+- Reviewed 1440 x 900 and 390 x 844 full-page home/pricing captures and sample-viewer captures under `outputs/review/trust-*`. No horizontal overflow was observed. The original cinematic film, preference-aware playback and deliberate looping sound behavior remain covered by the browser suite.
+- Resolved lost pre-hydration interactions in the new sample/finder controls, the feedback placeholder heading level, and the mobile quote-sidebar heading level. Corrected the stale accessibility statement about film autoplay.
+- Performance samples earlier in this document belong to the earlier build. They are not measurements of this expanded release. No live calendar booking, payment, production database migration or email delivery is claimed by local tests.
+
+The publication workflow runs the production build and packages the exact pushed source before saving/deploying. Its final build/publication outcome is reported in the session handoff. Owner data dependencies are listed in `owner-content-checklist.md`.
