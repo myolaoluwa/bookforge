@@ -20,3 +20,11 @@
 @media(min-width:480px) and (max-height:560px) and (orientation:landscape){.cinema-story{right:max(24px,env(safe-area-inset-right))}.cinema-bottom{padding-right:max(24px,env(safe-area-inset-right))}}
 
 @media(min-width:480px) and (max-height:300px) and (orientation:landscape){.site-header{height:56px}.cinema-content{padding-top:72px}.cinema-content h1{font-size:28px}.cinema-content .hero-description{display:none}.cinema-bottom{top:72px}}
+/* Give the homepage introduction a deliberate gap below the navigation. */
+@media(min-width:1101px){.cinema-content{padding-top:clamp(208px,25svh,260px)}}
+@media(min-width:1101px) and (max-height:720px){.cinema-content{padding-top:180px}}
+@media(min-width:761px) and (max-width:1100px){.cinema-content{padding-top:200px}}
+@media(max-width:760px){.cinema-content{padding-top:168px}}
+@media(min-width:480px) and (max-height:560px) and (orientation:landscape){.cinema-content{padding-top:128px}}
+@media(min-width:480px) and (max-width:760px) and (max-height:400px) and (orientation:landscape){.cinema-content{padding-top:112px}}
+@media(min-width:480px) and (max-height:300px) and (orientation:landscape){.cinema-content{padding-top:88px}}
