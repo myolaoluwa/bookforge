@@ -1,9 +1,5 @@
 # Bookforge implementation status
 
-## Multi-page design collection — 5 November 2026
-
-Added an original six-book exhibition under `/portfolio/concepts`, with individual cover/interior case studies, a dedicated editorial library, before/after comparisons and a publishing-format explorer. Homepage and existing permissioned portfolio link into the collection. The hero film, services, inquiry flow and existing palette are preserved. A vector ribbon mark interprets the supplied logo reference. All book work is explicitly labeled as original studio concepts. See `design-collection-handoff.md` for provenance, routes, verification and limits; final publication status is reported in the session delivery.
-
 Source of truth: `website vision.md` and the supplied Bookforge execution prompt. Existing Folio implementation is preserved under `archive/folio-v1` and its media under `public/reference`.
 
 ## Plan and acceptance gates
