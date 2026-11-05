@@ -1,5 +1,9 @@
 # Bookforge implementation status
 
+## Supplied logo and cinematic craft scenes — 5 November 2026
+
+Applied the user's actual ribbon and BookForge wordmark artwork in the header/footer and favicon. Replaced empty selected-work, cover-study, team-gallery and feedback visuals with original cinematic bookmaking imagery, light-motion controls, scene inspection and the retained curved gallery. Studio scenes are labeled as illustrative and do not invent staff, commissions or endorsements. The restored layout and hero video remain. See `cinematic-craft-handoff.md` for asset provenance, verification, connector limits and publication reporting.
+
 Source of truth: `website vision.md` and the supplied Bookforge execution prompt. Existing Folio implementation is preserved under `archive/folio-v1` and its media under `public/reference`.
 
 ## Plan and acceptance gates

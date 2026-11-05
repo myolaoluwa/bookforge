@@ -37,10 +37,10 @@ test('format and platform choices survive navigation and the local brief downloa
  const text=await readFile((await download.path())!,'utf8');expect(text).toContain('formats: ebook,paperback');expect(text).toContain('platform: amazon-kdp');expect(text).toContain('has not been submitted');
 });
 
-test('unconfigured calendar and work slots never simulate bookings or clients',async({page})=>{
+test('unconfigured calendar and cinematic craft scenes never simulate bookings or clients',async({page})=>{
  await page.goto('/consultation');await expect(page.getByText('Calendar availability pending')).toBeVisible();await expect(page.getByRole('link',{name:'Open the booking calendar'})).toHaveCount(0);
- await page.goto('/portfolio');await expect(page.getByText('Client work placeholder',{exact:true})).toHaveCount(2);
- await page.goto('/testimonials');await expect(page.getByText('Author feedback placeholder',{exact:true})).toBeVisible();
+ await page.goto('/portfolio');await expect(page.locator('.craft-work-grid .craft-experience')).toHaveCount(2);await expect(page.locator('.craft-provenance').first()).toContainText('not client publications');
+ await page.goto('/testimonials');await expect(page.locator('.craft-promise')).toContainText('Handled with care');await expect(page.locator('.content-placeholder')).toHaveCount(0);
 });
 
 test('new trust pages are accessible and fit mobile',async({page})=>{
