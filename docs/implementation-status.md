@@ -1,8 +1,10 @@
 # Bookforge implementation status
 
+Header and hero links now use native browser navigation, including the homepage logo link. Transparent PNG logo assets are prepared before use; the scene pause-motion buttons are removed while reduced-motion and offscreen pausing remain automatic.
+
 ## Supplied logo and cinematic craft scenes — 5 November 2026
 
-Applied the user's actual ribbon and BookForge wordmark artwork in the header/footer and favicon. Replaced empty selected-work, cover-study, team-gallery and feedback visuals with original cinematic bookmaking imagery, light-motion controls, scene inspection and the retained curved gallery. Studio scenes are labeled as illustrative and do not invent staff, commissions or endorsements. The restored layout and hero video remain. See `cinematic-craft-handoff.md` for asset provenance, verification, connector limits and publication reporting.
+Applied the user's actual ribbon and BookForge wordmark artwork in the header/footer and favicon. Replaced empty selected-work, cover-study, team-gallery and feedback visuals with original cinematic bookmaking imagery, automatic light motion, scene inspection and the retained curved gallery. Studio scenes are labeled as illustrative and do not invent staff, commissions or endorsements. The restored layout and hero video remain. See `cinematic-craft-handoff.md` for asset provenance, verification, connector limits and publication reporting.
 
 Source of truth: `website vision.md` and the supplied Bookforge execution prompt. Existing Folio implementation is preserved under `archive/folio-v1` and its media under `public/reference`.
 
@@ -59,3 +61,4 @@ The rejected contact-sheet direction has been replaced by **The minds behind you
 The renderer is dynamically imported near the viewport and uses no added package or external animation service. Drawing stops at rest, offscreen and in hidden tabs; real textures load as their surfaces approach view. Native buttons, arrow keys and horizontal wheel input offer alternatives to dragging, while normal vertical scrolling stays available. Reduced motion, missing WebGL, context loss and image/CORS failures use a keyboard-accessible native portrait list. See `studio-people-handoff.md` for exact content and storage requirements. No photos are sent to Animorio.
 
 Verification: the focused 12-scenario desktop/mobile Playwright run passed, including mouse drag, native emulated touch swipe, momentum settling, controls, reduced-motion changes, absent graphics support, local image textures, graphics-loss fallback and homepage accessibility. The initial run caught and corrected a touch capture cancellation and fallback label/focus issues. TypeScript and diff checks passed. A separate seven-size review confirmed interactive rendering with no horizontal overflow at 320, 390, 568 landscape, 768, 1024, 1440 and 2560 pixels; the studio-page still fallback also fits. Desktop and mobile screenshots are stored under ignored `outputs/review/dome-*`. The final phone framing refinement is checked separately before publication. Checks use Chromium/Edge, not physical-device or Safari certification. Existing film, soundtrack and private access are preserved.
+

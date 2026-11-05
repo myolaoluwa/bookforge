@@ -4,20 +4,20 @@
 
 ## Logo
 
-The exact supplied PNG is preserved at `public/brand/bookforge-supplied-original.png`. Header and footer use source-pixel crops of its ribbon and its original BookForge wordmark, on an ivory backing for contrast against the dark navigation. The favicon uses the same supplied ribbon. No vector approximation or newly typeset wordmark is used. `scripts/prepare-craft-assets.mjs` makes the resize/crop derivatives with Sharp, without redrawing the artwork.
+The exact supplied PNG is preserved at `public/brand/bookforge-supplied-original.png`. Header and footer use prepared transparent PNG crops of its ribbon and original BookForge wordmark. Display filters adapt the lettering and dark ribbon to the dark navigation. The logo links to the homepage. The favicon uses the same supplied ribbon. No vector approximation or newly typeset wordmark is used. `scripts/prepare-craft-assets.mjs` makes the resize/crop derivatives with Sharp, without redrawing the artwork.
 
-A transparent extraction was generated and inspected, but its edge treatment was inferior; it was not used in the website. The original artwork and source-pixel derivatives are the delivered logo assets.
+The selected transparent extraction is delivered as public/brand/bookforge-logo.png, with symbol and wordmark PNG derivatives. Recolored generation attempts were discarded after inspection. The supplied original remains unchanged.
 
 ## Replacement experiences
 
-- Empty selected-work images: cinematic cloth-cover and open-book scenes, moving light, pause/resume controls and a native detail dialog.
+- Empty selected-work images: cinematic cloth-cover and open-book scenes, moving light and a native detail dialog.
 - Empty team portrait gallery: three actual craft images in the retained curved WebGL gallery; drag, touch, buttons, momentum and keyboard controls remain. Without published team profiles, headings describe bookmaking rather than implying staff identities. Published team records remain supported; missing portrait files use an explicitly described craft scene.
 - Empty author-feedback panel: a binding scene and working-process invitation. Real published testimonials still render when available; no reviews or authors are invented.
 - Old CSS cover stand-in in the sample viewer: the cloth scene and inspection experience. Existing readable print and digital sample tabs remain.
 
 The shared components apply these changes to home, portfolio, about, service and feedback pages. Empty real client and article data remain honest content states. These are illustrations of the service, not claims that depicted books are client publications or that physical bookbinding is included in a service proposal.
 
-Motion uses a restrained 8.8-second raking-light cycle across the original image, driven by the browser animation API and clipped to its frame. It pauses offscreen, when the tab is hidden, after a visitor pauses it, and for reduced motion. Images remain still and legible for reduced-motion visitors. Dialogs provide scene selection and service-specific proposal links. No camera movement is added to the photographic background.
+Motion uses a restrained 8.8-second raking-light cycle across the original image, driven by the browser animation API and clipped to its frame. It pauses offscreen, when the tab is hidden, and for reduced motion. Images remain still and legible for reduced-motion visitors. Dialogs provide scene selection and service-specific proposal links. No camera movement is added to the photographic background.
 
 ## Assets and prompts
 
@@ -35,9 +35,12 @@ The Runway video connector returned `UNAUTHORIZED` and required reauthentication
 
 - TypeScript and production build pass.
 - 84 existing unit/integration tests pass.
-- 18 final desktop/mobile scene and gallery browser tests pass: motion controls/offscreen/reduced motion, modal service links, keyboard/touch/momentum, WebGL fallback and accessibility.
+- 18 final desktop/mobile scene and gallery browser tests pass: offscreen/reduced motion, modal service links, keyboard/touch/momentum, WebGL fallback and accessibility.
 - All 12 existing trust/inquiry browser tests pass, with intentional expectations updated for the replacement visuals.
 - 25 route/viewport checks report no horizontal overflow, empty visual placeholders or browser page errors. Desktop/mobile screenshots were inspected; lazy images are decoded before final screenshots.
 - Browser checks use installed Microsoft Edge/Chromium and emulated phones, not physical Safari certification.
 
 Screenshots and results are under ignored `outputs/review/craft/`. Deployment outcome is recorded in the session delivery. Existing inquiry/mail/CMS launch configuration requirements are unchanged, as is private access.
+
+
+Navigation follow-up: every header destination and logo home link passed on desktop and mobile; both hero calls to action passed, with the desktop craft anchor verified. Eight scene/accessibility checks passed after removing pause-motion controls. TypeScript and targeted navigation lint passed. Mobile intentionally omits the decorative craft scroll link.

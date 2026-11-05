@@ -11,7 +11,9 @@ for(const [name,file] of assets){
 // Preserve the supplied artwork byte-for-byte; web derivatives only crop/resize it.
 const original='C:/Users/HP/Downloads/ChatGPT Image Nov 5, 2026, 11_29_33 AM.png';
 copyFileSync(original,'public/brand/bookforge-supplied-original.png');
-await sharp(original).extract({left:510,top:105,width:520,height:620}).resize({height:256}).png().toFile('public/brand/bookforge-symbol.png');
-await sharp(original).extract({left:170,top:735,width:1105,height:250}).resize({width:660}).webp({quality:95}).toFile('public/brand/bookforge-wordmark.webp');
-await sharp(original).extract({left:170,top:105,width:1105,height:880}).resize({width:480}).webp({quality:95}).toFile('public/brand/bookforge-supplied.webp');
-writeFileSync('public/craft/provenance.json',JSON.stringify({created:'2026-11-05',kind:'Original AI-generated cinematic studio imagery',clientWork:false,teamPortraits:false,assets:assets.map(([name])=>name+'.webp'),logo:'User supplied artwork, original retained without modification; cropped web derivatives preserve the source pixels.'},null,2));
+const transparent=generated+'exec-2ae8c723-93e2-416c-aaa9-e27fe1a6156f.png';
+await sharp(transparent).png().toFile('public/brand/bookforge-logo.png');
+await sharp(transparent).extract({left:510,top:105,width:520,height:620}).resize({height:256}).png().toFile('public/brand/bookforge-symbol-transparent.png');
+await sharp(transparent).extract({left:170,top:735,width:1105,height:250}).resize({width:660}).png().toFile('public/brand/bookforge-wordmark.png');
+writeFileSync('public/craft/provenance.json',JSON.stringify({created:'2026-11-05',kind:'Original AI-generated cinematic studio imagery',clientWork:false,teamPortraits:false,assets:assets.map(([name])=>name+'.webp'),logo:'User supplied artwork, original retained without modification; transparent PNG derivatives are cropped from the selected background-removal edit.'},null,2));
+

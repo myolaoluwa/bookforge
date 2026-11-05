@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 test('supplied logo, cinematic imagery and scene dialog replace empty slots',async({page})=>{
  await page.goto('/');await expect(page.locator('.site-header .brand-logo')).toBeVisible();
- await expect(page.locator('.site-header .brand-logo-name')).toHaveAttribute('src','/brand/bookforge-wordmark.webp');
+ await expect(page.locator('.site-header .brand-logo-name')).toHaveAttribute('src','/brand/bookforge-wordmark.png');
  await expect(page.locator('.content-placeholder,.portrait-placeholder,.sample-empty')).toHaveCount(0);
  await expect(page.locator('.craft-work-grid .craft-experience')).toHaveCount(2);
  const open=page.getByRole('button',{name:'Explore cover craft',exact:true});await open.click();
@@ -10,13 +10,11 @@ test('supplied logo, cinematic imagery and scene dialog replace empty slots',asy
  await dialog.getByRole('button',{name:'Inside the book',exact:false}).click();await expect(dialog.locator('h2')).toHaveText('A rhythm for reading.');
  await dialog.getByRole('link',{name:'Discuss this part of your book'}).click();await expect(page.getByLabel('What would you like help with?')).toHaveValue('paperback-formatting');
 });
-test('motion pauses on request, offscreen and for reduced motion',async({page})=>{
+test('motion controls are removed while offscreen and reduced motion remain automatic',async({page})=>{
  await page.goto('/');const frame=page.locator('.craft-work-grid .craft-frame').first();await frame.scrollIntoViewIfNeeded();await expect(frame).toHaveAttribute('data-motion','playing');
- const pause=frame.getByRole('button',{name:'Pause motion for cover craft'});await pause.click();await expect(frame).toHaveAttribute('data-motion','paused');
- await frame.getByRole('button',{name:'Resume motion for cover craft'}).click();await expect(frame).toHaveAttribute('data-motion','playing');
+ await expect(page.getByRole('button',{name:/pause motion|resume motion|still scene/i})).toHaveCount(0);
  await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await expect(frame).toHaveAttribute('data-motion','offscreen');
  await page.emulateMedia({reducedMotion:'reduce'});await frame.scrollIntoViewIfNeeded();await expect(frame).toHaveAttribute('data-motion','reduced');
- await expect(frame.getByRole('button',{name:'Still scene'})).toBeDisabled();
 });
 test('scene gallery preserves keyboard controls and honest craft descriptions',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');const section=page.locator('#people');await section.scrollIntoViewIfNeeded();

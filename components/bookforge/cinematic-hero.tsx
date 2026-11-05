@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+/* eslint-disable @next/next/no-html-link-for-pages -- Native navigation avoids stalled Vinext client transitions. */
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {ReferenceFilm} from './shell';
 import {Arrow,CTA} from './ui';
@@ -18,10 +18,10 @@ export function CinematicHero(){const hydrated=useSyncExternalStore(subscribeRea
     <p className="kicker">For the story only you could write.</p>
     <h1 id="cinematic-title"><span>You wrote<br/>{' '}the book.</span><em>We’ll handle<br/>{' '}what comes next.</em></h1>
     <p className="hero-description">Book editing, formatting, cover design & publishing support. From your last full stop to your first reader.</p>
-    <div className="cinema-actions"><CTA>Get a tailored quote</CTA><Link className="quiet-link" href="/services">Explore the studio <Arrow/></Link></div>
+    <div className="cinema-actions"><CTA>Get a tailored quote</CTA><a className="quiet-link" href="/services">Explore the studio <Arrow/></a></div>
   </div>
   <div className="cinema-story" aria-hidden="true"><span className="story-folio">The next chapter</span><p key={beat}>{storyBeats[beat].text}</p><span className="story-task" key={task}>{task||storyBeats[beat].label}</span><div className="story-progress">{storyBeats.map((_,i)=><span key={i} data-active={i===beat}/>)}</div></div>
-  <div className="cinema-bottom wrap"><Link href="#craft" className="cinema-scroll"><Arrow down/><span>Discover the craft</span></Link><div className="cinema-controls"><button type="button" aria-label={playing?'Pause cinematic film':'Play cinematic film'} onClick={()=>void toggle()} disabled={unavailable||!hydrated}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={playing?'M9 5v14M15 5v14':'m8 5 11 7-11 7Z'}/></svg></button></div></div>
+  <div className="cinema-bottom wrap"><a href="#craft" className="cinema-scroll"><Arrow down/><span>Discover the craft</span></a><div className="cinema-controls"><button type="button" aria-label={playing?'Pause cinematic film':'Play cinematic film'} onClick={()=>void toggle()} disabled={unavailable||!hydrated}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={playing?'M9 5v14M15 5v14':'m8 5 11 7-11 7Z'}/></svg></button></div></div>
   {unavailable&&<p className="cinema-fallback" role="status">The film is unavailable. Your next chapter can still begin below.</p>}
  </section>
 }
