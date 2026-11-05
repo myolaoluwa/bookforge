@@ -6,7 +6,7 @@ import type {DomeController} from './portrait-dome';
 
 export type StudioIntroduction={id:string;name:string;role:string;summary:string;portrait?:string;alt?:string;href?:string;placeholder?:boolean};
 const slots:StudioIntroduction[]=[
- {id:'eva',name:'Eva',role:'Studio Team',summary:'Meet Eva, part of the BookForge studio.',portrait:'/team/eva.webp',alt:'Eva, a member of the BookForge studio, with long braids, dark clothing and silver necklaces against a warm-grey background.'},
+ {id:'eva',name:'Eva',role:'Studio Team',summary:'Meet Eva, part of the BookForge studio.',portrait:'/team/eva-editor.webp',alt:'Eva in a forest-green blazer and ivory blouse, with long braids and silver necklaces, in a quiet book-filled studio.'},
  {id:'adele',name:'Adele',role:'Studio Director',summary:'Adele leads BookForge, guiding the studio’s creative direction and bringing care and clarity to each stage of your book’s journey.',portrait:'/team/studio-portrait.webp',alt:'Adele, Studio Director, seated in a black cap and T-shirt, holding a red teddy bear.'},
  {id:'rachel',name:'Rachel',role:'Studio Team',summary:'Meet Rachel, part of the BookForge studio.',portrait:'/team/rachel.webp',alt:'Rachel, a member of the BookForge studio, wearing a black collared blouse with her braids swept to one side.'},
 ];
