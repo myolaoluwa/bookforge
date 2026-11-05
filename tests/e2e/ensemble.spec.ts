@@ -6,8 +6,8 @@ test('curved portrait gallery responds to buttons and keyboard',async({page})=>{
  await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});await expect(gallery).toHaveAttribute('data-position','1.000');
  await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Rachel');
  await expect(gallery).toHaveAttribute('data-position','2.000');await gallery.focus();await page.keyboard.press('ArrowRight');
- await expect(section.locator('.ensemble-selection h3')).toHaveText('The first impression');await expect(gallery).toBeFocused();await expect(gallery).toHaveAttribute('data-position','3.000');
- await section.locator('.ensemble-roster').getByRole('button',{name:'The first impression',exact:true}).click();await expect(gallery).toHaveAttribute('data-position','3.000');
+ await expect(section.locator('.ensemble-selection h3')).toHaveText('Eva');await expect(gallery).toBeFocused();await expect(gallery).toHaveAttribute('data-position','3.000');
+ await section.locator('.ensemble-roster').getByRole('button',{name:'Eva',exact:true}).click();await expect(gallery).toHaveAttribute('data-position','3.000');
  expect(errors).toEqual([]);
 });
 

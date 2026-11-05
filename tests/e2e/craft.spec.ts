@@ -20,7 +20,7 @@ test('scene gallery preserves keyboard controls and honest craft descriptions',a
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');const section=page.locator('#people');await section.scrollIntoViewIfNeeded();
  await expect(section.locator('h2')).toContainText('The minds behind');await expect(section.locator('.portrait-print img')).toHaveCount(3);
  await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Rachel');
- await expect(section).toContainText('The cover study illustrates our craft');
+ await expect(section.locator('.ensemble-roster')).toContainText('Eva');
 });
 test('replacement scenes and dialogs are accessible across public pages',async({page})=>{
  test.setTimeout(180000);await page.emulateMedia({reducedMotion:'reduce'});
