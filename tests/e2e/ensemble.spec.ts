@@ -3,12 +3,22 @@ import AxeBuilder from '@axe-core/playwright';
 
 test('curved portrait gallery responds to buttons and keyboard',async({page})=>{
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));await page.goto('/');const section=page.locator('#people'),gallery=section.locator('.portrait-dome');await gallery.scrollIntoViewIfNeeded();
- await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});await expect(gallery).toHaveAttribute('data-position','1.000');
+ await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});await expect(section.locator('.ensemble-selection h3')).toHaveText('Adele');
  await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Rachel');
  await expect(gallery).toHaveAttribute('data-position','2.000');await gallery.focus();await page.keyboard.press('ArrowRight');
  await expect(section.locator('.ensemble-selection h3')).toHaveText('Eva');await expect(gallery).toBeFocused();await expect(gallery).toHaveAttribute('data-position','3.000');
  await section.locator('.ensemble-roster').getByRole('button',{name:'Eva',exact:true}).click();await expect(gallery).toHaveAttribute('data-position','3.000');
  expect(errors).toEqual([]);
+});
+
+test('gallery rolls slowly by itself and arrows pause then resume it',async({page,isMobile})=>{
+ test.setTimeout(45000);await page.goto('/');const section=page.locator('#people'),gallery=section.locator('.portrait-dome');await gallery.scrollIntoViewIfNeeded();await page.mouse.move(0,0);
+ await expect(gallery).toHaveAttribute('data-auto-rolling','true',{timeout:15000});const start=Number(await gallery.getAttribute('data-position'));await page.waitForTimeout(1200);const delta=Number(await gallery.getAttribute('data-position'))-start;expect(delta).toBeGreaterThan(.02);expect(delta).toBeLessThan(.12);
+ if(!isMobile){await gallery.hover();await expect(gallery).toHaveAttribute('data-auto-rolling','false');const held=await gallery.getAttribute('data-position');await page.waitForTimeout(600);expect(await gallery.getAttribute('data-position')).toBe(held);await page.mouse.move(0,0)}
+ await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Rachel');await expect(gallery).toHaveAttribute('data-position','2.000');await expect(gallery).toHaveAttribute('data-auto-rolling','false');
+ await expect(gallery).toHaveAttribute('data-auto-rolling','true',{timeout:12000});
+ await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await page.waitForTimeout(300);const offscreen=await gallery.getAttribute('data-position');await page.waitForTimeout(700);expect(await gallery.getAttribute('data-position')).toBe(offscreen);
+ await page.emulateMedia({reducedMotion:'reduce'});await gallery.scrollIntoViewIfNeeded();await expect(section).toHaveAttribute('data-gallery-mode','still');await expect(section.getByRole('button',{name:'Next studio portrait'})).toBeVisible();
 });
 
 test('dragging and touch swiping move the gallery with momentum and settle',async({page,isMobile})=>{

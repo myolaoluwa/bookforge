@@ -31,7 +31,7 @@ export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
    if(controller.current)setMode('interactive');
   }catch{stop()}finally{starting=false}};
   const update=()=>{stop();if(!preference.matches)void start()};
-  const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;controller.current?.visible(visible);if(visible)void start()},{rootMargin:'180px'});
+  const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting&&entry.intersectionRatio>=.15;controller.current?.visible(visible);if(visible)void start()},{threshold:[0,.15]});
   observer.observe(area);preference.addEventListener('change',update);
   return()=>{disposed=true;observer.disconnect();preference.removeEventListener('change',update);controller.current?.destroy();controller.current=null};
  },[people]);
@@ -45,10 +45,10 @@ export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
    <div className="portrait-still" role="group" aria-label="Studio portraits" tabIndex={mode==='still'?0:undefined}>{entries.map((entry,index)=><button key={entry.id} type="button" className="portrait-print" disabled={!hydrated} aria-pressed={selected===index} aria-controls="studio-introduction-bio" onClick={()=>choose(index)}>
     {entry.portrait?<Image src={entry.portrait} alt={entry.alt||'Portrait of '+entry.name} width={1122} height={1402} unoptimized sizes="(max-width: 760px) 70vw, 400px"/>:<div className="portrait-placeholder" aria-hidden="true"><span>Bookforge / Studio</span><strong>{entry.role}</strong><span>Portrait placeholder</span></div>}<span className="portrait-print-caption">{entry.placeholder?entry.role+' ? Introduction placeholder':entry.name}</span>
    </button>)}</div>
-   <p className="dome-gesture" id="portrait-gallery-help">{mode==='interactive'?'Drag to explore · Swipe on mobile · Arrow keys':'Choose a scene or use the controls below'}</p>
+   <p className="dome-gesture" id="portrait-gallery-help">{mode==='interactive'?'Slowly rolling · Use the arrows to explore':'Choose a portrait or use the arrows below'}</p>
   </div>
   <div className="ensemble-reading"><div className="ensemble-selection"><div className="ensemble-label">{person.placeholder?'Introduction placeholder':person.role}</div><h3>{person.placeholder?person.role:person.name}</h3><div className="ensemble-pagination"><span>{String(selected+1).padStart(2,'0')} / {String(entries.length).padStart(2,'0')}</span><button type="button" disabled={!hydrated||entries.length<2} aria-label="Previous studio portrait" onClick={()=>step(-1)}><Arrow/></button><button type="button" disabled={!hydrated||entries.length<2} aria-label="Next studio portrait" onClick={()=>step(1)}><Arrow/></button></div></div>
-   <div className="ensemble-bio" id="studio-introduction-bio" aria-live="polite" aria-atomic="true"><p>{person.summary}</p>{person.href&&<a className="text-link" href={person.href}>Read the introduction <Arrow/></a>}</div>
+   <div className="ensemble-bio" id="studio-introduction-bio" aria-live={moving?'off':'polite'} aria-atomic="true"><p>{person.summary}</p>{person.href&&<a className="text-link" href={person.href}>Read the introduction <Arrow/></a>}</div>
   </div>
   <div className="ensemble-roster" role="group" aria-label="Choose a studio introduction">{entries.map((entry,index)=><button type="button" key={entry.id} disabled={!hydrated} aria-pressed={selected===index} aria-controls="studio-introduction-bio" onClick={()=>choose(index)}>{entry.placeholder?entry.role:entry.name}</button>)}</div>
   <div className="ensemble-closing"><p>A personal collaboration, from the first conversation.</p><a className="text-link" href="/request-a-proposal">Tell us about your book <Arrow/></a></div>
