@@ -28,6 +28,20 @@ test('default sound starts on the first page interaction after autoplay is block
  await page.locator('#cinematic-title').click();await expect(page.locator('.sound-control')).toHaveAttribute('data-state','on');await expect(page.locator('audio')).toHaveJSProperty('paused',false);
 });
 
+test('sound retries when touch or pointer release grants audio permission',async({page,isMobile})=>{
+ await page.addInitScript(()=>{let released=false;document.addEventListener('pointerup',()=>{released=true},true);const play=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){if(this instanceof HTMLAudioElement&&!released)return Promise.reject(new DOMException('Activation requires release','NotAllowedError'));return play.call(this)}});
+ await page.goto('/');await expect(page.locator('.sound-control')).toHaveAttribute('data-state','blocked');
+ if(isMobile)await page.locator('#cinematic-title').tap();else await page.locator('#cinematic-title').click();
+ await expect(page.locator('.sound-control')).toHaveAttribute('data-state','on');await expect(page.locator('audio')).toHaveJSProperty('paused',false);
+});
+
+test('fresh opening clears an older mute and reload restores the on default',async({page})=>{
+ await page.addInitScript(()=>sessionStorage.setItem('bookforge-sound','off'));
+ await page.goto('/');await expect(page.locator('.sound-control')).not.toHaveAttribute('data-state','starting');await expect(page.locator('.sound-control')).not.toHaveAttribute('data-state','off');
+ expect(await page.evaluate(()=>sessionStorage.getItem('bookforge-sound'))).toBeNull();
+ await page.reload();await expect(page.locator('.sound-control')).not.toHaveAttribute('data-state','starting');await expect(page.locator('.sound-control')).not.toHaveAttribute('data-state','off');
+});
+
 test('expanded mobile menu remains reachable in a short landscape viewport',async({page})=>{
  await page.setViewportSize({width:844,height:390});await page.goto('/');await page.getByRole('button',{name:'Menu navigation'}).click();await page.locator('.service-menu summary').click();const menu=page.locator('.navigation.open');const bounds=await menu.boundingBox();expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(390);await page.getByRole('link',{name:'Resources',exact:true}).click();await expect(page).toHaveURL(/\/resources$/);
 });

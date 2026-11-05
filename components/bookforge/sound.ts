@@ -30,7 +30,7 @@ export async function setSound(enabled?:boolean,{autoplay=false}:{autoplay?:bool
   publish(blocked?'blocked':'error');
  }
 }
-export function startDefaultSound(){if(initialized)return;initialized=true;let enabled=true;try{enabled=sessionStorage.getItem('bookforge-sound')!=='off'}catch{}return setSound(enabled,{autoplay:true})}
+export function startDefaultSound({freshEntry=false}:{freshEntry?:boolean}={}){if(initialized)return;initialized=true;let enabled=true;try{if(freshEntry)sessionStorage.removeItem('bookforge-sound');enabled=sessionStorage.getItem('bookforge-sound')!=='off'}catch{}return setSound(enabled,{autoplay:true})}
 export function retryDefaultSound(){if(desired&&state==='blocked')return setSound(true,{autoplay:true})}
 export function soundMediaEvent(event:'play'|'pause'|'error'){
  if(event==='error'){desired=false;cancelAnimationFrame(frame);publish('error')}
