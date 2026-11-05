@@ -60,7 +60,7 @@ Use `.env.example` and `docs/deployment-runbook.md`. Do not paste secrets into p
 
 ## Delivery features still gated by real operations
 
-The new **The people behind the pages** section is ready for approved team introductions. Provide each person's public name, actual role, portrait, short introduction and optional longer biography. See [the studio people handoff](studio-people-handoff.md) for portrait dimensions and CMS fields. Its three labelled introduction slots are suggestions, not a claim about staffing.
+The new **The minds behind your book** section is ready for approved team introductions. Provide each person's public name, actual role, portrait, short introduction and optional longer biography. See [the studio people handoff](studio-people-handoff.md) for portrait dimensions and CMS fields. Its five labelled introduction slots are suggestions, not a claim about staffing.
 
 The public trust and inquiry release does not include an authenticated author project workspace, live checkout/invoicing, or full-manuscript uploads. Those later roadmap items require approved contracts/payment rules, author identity/access design, private storage, file security, retention and provider setup. No empty portal or fake payment flow is exposed as a working feature.
 

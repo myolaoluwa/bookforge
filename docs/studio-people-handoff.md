@@ -1,34 +1,25 @@
-# The people behind the pages
+# The minds behind your book
 
-The homepage and `/about` share an editorial studio section. A portrait stage pairs with a selectable roster and a short introduction. On phones the roster comes before the portrait so a tap reveals the selected introduction immediately below it. There is no automatic carousel or additional video download. The existing hero film and soundtrack remain the main cinematic experience.
+The homepage and `/about` share a curved portrait gallery inspired by the image arrangement and movement on the [Meech213 homepage](https://www.meech213.com/). The scope is its photo gallery, not its navigation or whole-page design. Bookforge uses its own paper, ink and local Cormorant/Manrope typography.
 
-## Content needed from the owner
+## Owner content
 
-For each person you want to introduce, provide:
+For each real person, provide their approved public name, actual role, a portrait you may publish, and a short introduction of about 35?60 words. An optional longer biography appears on the individual profile page. Portraits around 1200 ? 1500 pixels work well. Leave room around the face: the gallery crops portraits into several tall proportions, centred on the image. Supply accurate portrait alternative text and permission to publish.
 
-- Their approved public name and actual role.
-- A portrait you have permission to publish, ideally 1200 × 1500 pixels or larger, with some space around the face. The desktop frame uses 4:5 and the mobile frame uses a square crop, so keep the face near the centre.
-- A short introduction of about 35–60 words, plus an optional longer biography for the profile page.
-- Accurate portrait alternative text and permission to publish the introduction.
+Five labelled content slots demonstrate the gallery while portraits are missing. Their suggested disciplines do not establish team size, staffing or credentials. Publishing real team records replaces the entire placeholder set. No stock or generated people are presented as team members.
 
-The three empty introduction slots suggest a founder, editorial craft, and book design. They are explicitly labelled placeholders and do not establish the team size or staffing. Replace or remove them according to the real team. No stock people, fabricated names, qualifications or testimonials were added.
+Use the existing admin Team area: title = public name, summary = short introduction, body = biography, data fields = `role`, `cover` (portrait URL) and `alt`. Published records link to `/team/{slug}`. The existing database/admin configuration must be available to publish. Photos stay in website assets or the configured storage provider. Nothing is uploaded to Animorio.
 
-## Adding approved profiles
+## Motion and fallback
 
-The section reads the existing published `team` records. In the admin Team area use the person's name as the title, their short introduction as the summary, their biography as the body, and the data fields `role`, `cover` (portrait URL), and `alt`. Each published record links to `/team/{slug}`. When any real records are published, the placeholder set is replaced entirely; a missing portrait remains clearly marked. Database/admin configuration is required to publish records.
+`components/bookforge/portrait-dome.ts` is an original, dependency-free WebGL renderer. Subdivided photo surfaces follow a cylinder, vary in height and proportion, and flex slightly with velocity. Dragging and native touch swipes add momentum, which slows and settles on a portrait. Buttons and arrow keys select profiles. Horizontal trackpad movement or Shift + wheel also rotates the gallery; ordinary vertical scrolling remains available.
 
-## Design references
+The renderer loads when the gallery approaches the viewport, caps pixel density, loads real textures as their surfaces become visible, and stops drawing at rest, offscreen or in a hidden tab. Resources and listeners are released on cleanup. No external animation service, Three.js package, copied reference artwork, or continuously running idle loop is required.
 
-- [Kreativy by Illiyin Studio](https://dribbble.com/shots/25996696-Kreativy-Our-Team-Agency-Website): portrait-led hierarchy, concise biographies and editorial scale.
-- [Agency Website Team Section by Fazle Rabbi Bishal](https://dribbble.com/shots/27089685-Agency-Website-Team-Section): restrained dark palette reference.
-- [Awwwards animation collection](https://www.awwwards.com/websites/animation/): reference research for deliberate transitions. One investigated individual Awwwards page was inaccessible; no claims about its implementation are made.
+Reduced motion bypasses the canvas and presents a native horizontal portrait list. That list is also the server-rendered, JavaScript-free, unsupported-WebGL and failed-image/CORS fallback. It remains keyboard focusable even before hydration. External portrait URLs need CORS permission for WebGL; without it the native image list is used. Standard published storage URLs are preferable.
 
-Bookforge uses its own ink, ivory and copper palette, local Cormorant and Manrope fonts, and original typographic portrait placeholders. References are not copied assets.
-
-## Behavior and accessibility
-
-Selection uses native buttons with `aria-pressed`, an associated labelled region, visible keyboard focus, and hydration readiness. Enter or Space selects the focused button. Portrait and copy changes use a short shutter reveal and fade, disabled under `prefers-reduced-motion`. No timed rotation, scroll interception, or hover-only content is used.
+The primary reference is the Meech213 homepage gallery. The [developer interview](https://www.commarts.com/webpicks/meech213) and [published motion analysis](https://animorio.com/en/journal/meech213-how-its-made/) helped identify its spatial arrangement and momentum. Bookforge's geometry, interaction code and placeholder artwork were authored independently. This is an adaptation for a small team section, not a claim of an exact reproduction of its full spherical portfolio.
 
 ## Verification
 
-Verification evidence and results are recorded in `docs/implementation-status.md`. Review screenshots and geometry reports are stored locally under ignored `outputs/review/ensemble-*` files. These are layout checks in Chromium/Edge, not certification on physical devices.
+Results are recorded in `implementation-status.md`. Local ignored evidence is under `outputs/review/dome-*`. Focused browser checks cover actual canvas rendering, keyboard/button selection, mouse dragging, emulated native touch swiping, momentum settling, vertical scrolling, reduced motion changes, missing graphics support, local asset textures, failure recovery, page accessibility, and narrow/wide layouts. These are Chromium/Edge checks, not physical-device or Safari certification.

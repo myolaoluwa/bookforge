@@ -27,6 +27,8 @@ The soundtrack is the preserved `ambience.mp3`, extracted earlier from the origi
 
 ## Pages and data
 
+The multi-page design exhibition begins at `/portfolio/concepts`. It contains six original book studies, a cover atelier, readable interior spreads, formatting comparisons and a live HTML reflow demonstration. It remains a done-for-you service showcase. See [the design collection handoff](docs/design-collection-handoff.md) for assets, routes, checks and production limits. Run its focused browser checks with `npm run test:e2e -- tests/e2e/collection.spec.ts`; create review artifacts with `node scripts/collection-review.mjs` while local preview serves port 5173.
+
 The app includes eight service pages, Goodreads scopes with query preselection, a staged proposal, portfolio search/filters and case study routes, about/process/contact, permissioned team/article/testimonial routes, policy pages and admin content/inquiry screens. Empty galleries are honest; studio illustrations are labeled and never presented as client work.
 
 Supabase migrations provide RLS-backed roles, content, private inquiries, notes, revisions, audit records, storage policies and an idempotent transactional mail outbox. Admin authorization is checked on the server and in RLS. Inquiry and email code remains unavailable until real configuration is supplied; preview mode can download a local brief and never pretends to send one.
