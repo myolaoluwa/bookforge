@@ -1,0 +1,11 @@
+# Rachel — Studio Team
+
+The owner supplied the portrait and name. No job role, experience or credentials were supplied, so the current role is the neutral “Studio Team.” Rachel replaces the right-hand fallback studio card; Adele remains the initial centre selection.
+
+Original: `public/team/rachel-original.jpeg` (1024 × 1280). Selected edit: `public/team/rachel.webp` (2048 × 2560, WebP quality 95). Built-in image_gen produced the selected edit at 1122 × 1402, then Sharp resized it using Lanczos3 for the final high-resolution asset. Upscaling increases output dimensions; it cannot recover detail absent from the source photograph. The image is rendered without CSS blur or colour filters, using the existing high-density gallery renderer.
+
+Final built-in image_gen edit prompt:
+
+> Edit this exact real photograph for a professional literary studio team portrait. The absolute priority is to preserve this woman's real face and identity exactly: identical facial proportions, eyes, eyelids, eyebrows, nose, lips, jaw, expression and direction of gaze. Preserve natural dark skin tone and pores, her exact swept braided hairstyle and earrings. Do not beautify, slim, smooth, reconstruct or change her face. Keep same head position and seated posture. Replace ONLY the busy logo-patterned blouse with a tasteful plain ink-black tailored collared blouse, modest elegant professional styling, realistic cloth folds, no logos. Retain the real room background (plant at left and dark vertical panel at right), but reduce the yellow cast and distracting brightness for a restrained neutral warm-grey editorial look. Maintain realistic camera focus and depth; eyes and face tack sharp with natural detail, no face blur, no plastic skin, no halos or artificial HDR. Improve tonal contrast and clarity conservatively, retain shadow detail. High quality upscale / restoration for a premium website portrait, vertical 4:5 composition, desired final resolution at least 2048 x 2560. Leave sufficient space above her braids; include full shoulders and upper torso. This must look like the same real woman in the supplied photo, never a different generated model. No typography, watermarks, graphics or frame.
+
+Review screenshots are under ignored `outputs/review/rachel/` for the right-hand card and selected portrait on desktop and mobile.

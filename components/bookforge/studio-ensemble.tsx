@@ -8,7 +8,7 @@ export type StudioIntroduction={id:string;name:string;role:string;summary:string
 const slots:StudioIntroduction[]=[
  {id:'studio',name:'The first impression',role:'Cover craft',summary:'A considered cover brings together the story, its genre and the reader it hopes to reach.',portrait:'/craft/cloth.webp',alt:'Cinematic green cloth cover study.'},
  {id:'adele',name:'Adele',role:'Studio Director',summary:'Adele leads BookForge, guiding the studio’s creative direction and bringing care and clarity to each stage of your book’s journey.',portrait:'/team/studio-portrait.webp',alt:'Adele, Studio Director, seated in a black cap and T-shirt, holding a red teddy bear.'},
- {id:'production',name:'Care in the making',role:'Book production',summary:'Paper, binding and format each have their own requirements. Preparation follows the edition you want to make.',portrait:'/craft/binding.webp',alt:'Illustrative hands guiding copper thread through paper signatures.'},
+ {id:'rachel',name:'Rachel',role:'Studio Team',summary:'Meet Rachel, part of the BookForge studio.',portrait:'/team/rachel.webp',alt:'Rachel, a member of the BookForge studio, wearing a black collared blouse with her braids swept to one side.'},
 ];
 const subscribeReady=()=>()=>{};
 export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
@@ -51,7 +51,7 @@ export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
    <div className="ensemble-bio" id="studio-introduction-bio" aria-live="polite" aria-atomic="true"><p>{person.summary}</p>{person.href&&<a className="text-link" href={person.href}>Read the introduction <Arrow/></a>}</div>
   </div>
   <div className="ensemble-roster" role="group" aria-label="Choose a studio introduction">{entries.map((entry,index)=><button type="button" key={entry.id} disabled={!hydrated} aria-pressed={selected===index} aria-controls="studio-introduction-bio" onClick={()=>choose(index)}>{entry.placeholder?entry.role:entry.name}</button>)}</div>
-  {!people.length&&<p className="ensemble-content-note">The cover and binding studies illustrate our craft.</p>}
+  {!people.length&&<p className="ensemble-content-note">The cover study illustrates our craft.</p>}
   <div className="ensemble-closing"><p>A personal collaboration, from the first conversation.</p><a className="text-link" href="/request-a-proposal">Tell us about your book <Arrow/></a></div>
  </section>;
 }
