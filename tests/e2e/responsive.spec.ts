@@ -22,6 +22,12 @@ test('browser-denied autoplay has an honest one-tap fallback and pause persists 
  await page.getByRole('link',{name:'Explore the studio',exact:true}).click();await expect(page).toHaveURL(/\/services$/);await expect(control).toHaveAttribute('data-state','off');await expect(page.locator('audio')).toHaveJSProperty('paused',true);
 });
 
+test('default sound starts on the first page interaction after autoplay is blocked',async({page})=>{
+ await page.addInitScript(()=>{const play=HTMLMediaElement.prototype.play;let first=true;HTMLMediaElement.prototype.play=function(){if(this instanceof HTMLAudioElement&&first){first=false;return Promise.reject(new DOMException('Autoplay denied','NotAllowedError'))}return play.call(this)}});
+ await page.goto('/');await expect(page.locator('.sound-control')).toHaveAttribute('data-state','blocked');
+ await page.locator('#cinematic-title').click();await expect(page.locator('.sound-control')).toHaveAttribute('data-state','on');await expect(page.locator('audio')).toHaveJSProperty('paused',false);
+});
+
 test('expanded mobile menu remains reachable in a short landscape viewport',async({page})=>{
  await page.setViewportSize({width:844,height:390});await page.goto('/');await page.getByRole('button',{name:'Menu navigation'}).click();await page.locator('.service-menu summary').click();const menu=page.locator('.navigation.open');const bounds=await menu.boundingBox();expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(390);await page.getByRole('link',{name:'Resources',exact:true}).click();await expect(page).toHaveURL(/\/resources$/);
 });

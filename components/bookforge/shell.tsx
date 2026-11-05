@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable @next/next/no-html-link-for-pages -- Native navigation avoids stalled Vinext client transitions. */
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
-import {setSound,startDefaultSound,soundMediaEvent,subscribeSound,soundSnapshot,serverSoundSnapshot} from './sound';
+import {setSound,startDefaultSound,retryDefaultSound,soundMediaEvent,subscribeSound,soundSnapshot,serverSoundSnapshot} from './sound';
 import type {RefObject,SyntheticEvent} from 'react';
 import {usePathname} from 'next/navigation';
 import {Arrow,BrandLogo} from './ui';
@@ -11,7 +11,7 @@ const subscribeReady=()=>()=>{};
 export function SoundControl(){
  const hydrated=useSyncExternalStore(subscribeReady,()=>true,()=>false);
  const state=useSyncExternalStore(subscribeSound,soundSnapshot,serverSoundSnapshot);
- useEffect(()=>{if(hydrated)void startDefaultSound()},[hydrated]);
+ useEffect(()=>{if(!hydrated)return;function retry(event:Event){if((event.target as Element)?.closest?.('.sound-control'))return;void retryDefaultSound()}document.addEventListener('pointerdown',retry);document.addEventListener('keydown',retry);void startDefaultSound();return()=>{document.removeEventListener('pointerdown',retry);document.removeEventListener('keydown',retry)}},[hydrated]);
  const label=state==='on'?'Pause soundtrack':state==='starting'?'Cancel soundtrack start':state==='error'?'Retry soundtrack':'Play soundtrack';
  const hint=state==='blocked'?'Tap to enable sound':state==='on'?'Soundtrack playing':state==='starting'?'Starting soundtrack':state==='error'?'Sound unavailable. Tap to retry':'Soundtrack paused';
  return <><audio id="bookforge-soundtrack" loop preload="metadata" src="/reference/ambience.mp3" onPlay={()=>soundMediaEvent('play')} onPause={()=>soundMediaEvent('pause')} onError={()=>soundMediaEvent('error')}/><button type="button" className="sound-control" disabled={!hydrated} data-state={state} onClick={()=>void setSound(state!=='on'&&state!=='starting')} aria-pressed={state==='on'} aria-label={label} title={hint}><svg viewBox="0 0 26 24" aria-hidden="true"><path d="M2 9v6h4l5 4V5L6 9H2Z"/><path d={state==='on'?'M17 6v12M23 6v12':'m17 6 8 6-8 6Z'}/></svg><span className="sound-hint" aria-hidden="true">{hint}</span></button></>;

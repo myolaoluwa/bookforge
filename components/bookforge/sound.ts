@@ -13,6 +13,7 @@ export async function setSound(enabled?:boolean,{autoplay=false}:{autoplay?:bool
  const audio=document.getElementById('bookforge-soundtrack') as HTMLAudioElement|null;
  if(!audio){publish('error');return}
  desired=enabled??!desired;cancelAnimationFrame(frame);
+ if(!autoplay){try{sessionStorage.setItem('bookforge-sound',desired?'on':'off')}catch{}}
  if(!desired){audio.pause();publish('off');return}
  publish('starting');
  // Audible autoplay is requested honestly, at the intended volume. Never
@@ -24,11 +25,13 @@ export async function setSound(enabled?:boolean,{autoplay=false}:{autoplay?:bool
   publish('on');if(!autoplay)ramp(audio,.35);
  }catch(error){
   if(current!==operation)return;
-  desired=false;
-  publish(error instanceof DOMException&&error.name==='NotAllowedError'?'blocked':'error');
+  const blocked=error instanceof DOMException&&error.name==='NotAllowedError';
+  if(!blocked)desired=false;
+  publish(blocked?'blocked':'error');
  }
 }
-export function startDefaultSound(){if(initialized)return;initialized=true;return setSound(true,{autoplay:true})}
+export function startDefaultSound(){if(initialized)return;initialized=true;let enabled=true;try{enabled=sessionStorage.getItem('bookforge-sound')!=='off'}catch{}return setSound(enabled,{autoplay:true})}
+export function retryDefaultSound(){if(desired&&state==='blocked')return setSound(true,{autoplay:true})}
 export function soundMediaEvent(event:'play'|'pause'|'error'){
  if(event==='error'){desired=false;cancelAnimationFrame(frame);publish('error')}
  else if(event==='pause'&&state==='on'){desired=false;cancelAnimationFrame(frame);publish('off')}

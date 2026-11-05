@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import {useEffect,useRef,useState,useSyncExternalStore} from 'react';
 import {Arrow} from './ui';
 import type {DomeController} from './portrait-dome';
@@ -49,10 +48,10 @@ export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
    <p className="dome-gesture" id="portrait-gallery-help">{mode==='interactive'?'Drag to explore · Swipe on mobile · Arrow keys':'Choose a scene or use the controls below'}</p>
   </div>
   <div className="ensemble-reading"><div className="ensemble-selection"><div className="ensemble-label">{person.placeholder?'Introduction placeholder':person.role}</div><h3>{person.placeholder?person.role:person.name}</h3><div className="ensemble-pagination"><span>{String(selected+1).padStart(2,'0')} / {String(entries.length).padStart(2,'0')}</span><button type="button" disabled={!hydrated||entries.length<2} aria-label="Previous studio portrait" onClick={()=>step(-1)}><Arrow/></button><button type="button" disabled={!hydrated||entries.length<2} aria-label="Next studio portrait" onClick={()=>step(1)}><Arrow/></button></div></div>
-   <div className="ensemble-bio" id="studio-introduction-bio" aria-live="polite" aria-atomic="true"><p>{person.summary}</p>{person.href&&<Link className="text-link" href={person.href}>Read the introduction <Arrow/></Link>}</div>
+   <div className="ensemble-bio" id="studio-introduction-bio" aria-live="polite" aria-atomic="true"><p>{person.summary}</p>{person.href&&<a className="text-link" href={person.href}>Read the introduction <Arrow/></a>}</div>
   </div>
   <div className="ensemble-roster" role="group" aria-label="Choose a studio introduction">{entries.map((entry,index)=><button type="button" key={entry.id} disabled={!hydrated} aria-pressed={selected===index} aria-controls="studio-introduction-bio" onClick={()=>choose(index)}>{entry.placeholder?entry.role:entry.name}</button>)}</div>
   {!people.length&&<p className="ensemble-content-note">These scenes illustrate the craft; they are not staff portraits or client publications.</p>}
-  <div className="ensemble-closing"><p>A personal collaboration, from the first conversation.</p><Link className="text-link" href="/request-a-proposal">Tell us about your book <Arrow/></Link></div>
+  <div className="ensemble-closing"><p>A personal collaboration, from the first conversation.</p><a className="text-link" href="/request-a-proposal">Tell us about your book <Arrow/></a></div>
  </section>;
 }
