@@ -1,5 +1,9 @@
 # Bookforge implementation status
 
+## Cinematic inner pages — 5 November 2026
+
+Services, Portfolio, About, Process, Resources and all eight service pages now have responsive photographic openings. A newly generated editorial-desk image joins the existing cloth, reading and binding studies. Phone layouts place imagery below the introduction rather than behind longer copy. All 32 representative route/viewport checks passed for image loading, overflow, browser errors and introduction accessibility. See `inner-cinema-handoff.md` for prompts and assets.
+
 Header and hero links now use native browser navigation, including the homepage logo link. Transparent PNG logo assets are prepared before use; the scene pause-motion buttons are removed while reduced-motion and offscreen pausing remain automatic.
 
 ## Supplied logo and cinematic craft scenes — 5 November 2026

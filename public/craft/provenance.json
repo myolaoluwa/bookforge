@@ -6,7 +6,12 @@
   "assets": [
     "cloth.webp",
     "reading.webp",
-    "binding.webp"
+    "binding.webp",
+    "editing.webp"
   ],
-  "logo": "User supplied artwork, original retained without modification; transparent PNG derivatives are cropped from the selected background-removal edit."
+  "logo": "User supplied artwork, original retained without modification; transparent PNG derivatives are cropped from the selected background-removal edit.",
+  "editorialImage": {
+    "tool": "Built-in image_gen",
+    "prompt": "Cinematic editorial photograph: cream manuscript pages, restrained pencil annotations, graphite pencil, forest-green clothbound book, dark wood, copper sidelight, realistic paper texture, no people or logos; landscape 16:9."
+  }
 }
