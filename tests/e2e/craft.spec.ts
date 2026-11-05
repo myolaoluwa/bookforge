@@ -18,9 +18,9 @@ test('motion controls are removed while offscreen and reduced motion remain auto
 });
 test('scene gallery preserves keyboard controls and honest craft descriptions',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');const section=page.locator('#people');await section.scrollIntoViewIfNeeded();
- await expect(section.locator('h2')).toContainText('The craft behind');await expect(section.locator('.portrait-print img')).toHaveCount(3);
- await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('A rhythm for reading');
- await expect(section).toContainText('not staff portraits or client publications');
+ await expect(section.locator('h2')).toContainText('The minds behind');await expect(section.locator('.portrait-print img')).toHaveCount(3);
+ await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');
+ await expect(section).toContainText('The cover and binding studies illustrate our craft');
 });
 test('replacement scenes and dialogs are accessible across public pages',async({page})=>{
  test.setTimeout(180000);await page.emulateMedia({reducedMotion:'reduce'});

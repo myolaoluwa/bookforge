@@ -1,0 +1,9 @@
+# Adele — Studio Director
+
+The supplied photograph is retained at `public/team/studio-portrait-original.jpeg`. The selected photographic edit is delivered as `public/team/studio-portrait.webp` at 1122 × 1402, quality 95. It replaces the middle fallback studio card on home and About, selected at initial load. The portrait uses no CSS blur, grayscale or colour filter. The gallery texture limit is 1536 pixels and the rendering pixel ratio is capped at 2 to retain detail on high-density displays.
+
+Prepared with the built-in image_gen editing tool. Final prompt:
+
+> Edit this exact supplied real studio photograph only for photographic finishing. Preserve the identical person and facial identity precisely: eyes, nose, lips, face shape, expression, skin texture, cap, seated pose, limbs, fingers, black T-shirt, jeans, boots, metal chair, red teddy bear and background all remain unchanged. Keep the full original 4:5 portrait composition and selective colour treatment: grayscale photograph with deep red teddy bear. Apply restrained professional tonal contrast: richer blacks with retained clothing detail, slightly brighter natural facial midtones and eyes, clean whites without clipping. Subtly improve genuine edge clarity and local contrast, keep pores and natural texture. No face reconstruction, no beauty retouch, no smoothing, no invented details, no artificial HDR, no halos, no blur, no background replacement, no text. It must remain the same believable real photograph, simply a crisp high-contrast photographic grade suitable for a premium website team portrait. Do not stylize or redraw.
+
+The generated result was inspected against the supplied photograph. Desktop and mobile gallery screenshots are in ignored `outputs/review/adele/`. The name and leadership role come from the owner; no professional history or credentials were invented.

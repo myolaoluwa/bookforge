@@ -3,10 +3,10 @@ import AxeBuilder from '@axe-core/playwright';
 
 test('curved portrait gallery responds to buttons and keyboard',async({page})=>{
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));await page.goto('/');const section=page.locator('#people'),gallery=section.locator('.portrait-dome');await gallery.scrollIntoViewIfNeeded();
- await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});await expect(gallery).toHaveAttribute('data-position','0.000');
- await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('A rhythm for reading');
- await expect(gallery).toHaveAttribute('data-position','1.000');await gallery.focus();await page.keyboard.press('ArrowRight');
- await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');await expect(gallery).toBeFocused();await expect(gallery).toHaveAttribute('data-position','2.000');
+ await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});await expect(gallery).toHaveAttribute('data-position','1.000');
+ await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');
+ await expect(gallery).toHaveAttribute('data-position','2.000');await gallery.focus();await page.keyboard.press('ArrowRight');
+ await expect(section.locator('.ensemble-selection h3')).toHaveText('The first impression');await expect(gallery).toBeFocused();await expect(gallery).toHaveAttribute('data-position','3.000');
  await section.locator('.ensemble-roster').getByRole('button',{name:'The first impression',exact:true}).click();await expect(gallery).toHaveAttribute('data-position','3.000');
  expect(errors).toEqual([]);
 });
@@ -16,7 +16,7 @@ test('dragging and touch swiping move the gallery with momentum and settle',asyn
  const box=(await gallery.boundingBox())!,x=box.x+box.width*.72,y=box.y+box.height*.5;
  if(isMobile){const client=await page.context().newCDPSession(page);await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});for(let i=1;i<=8;i++)await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-i*20,y}]});await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await client.detach()}
  else{await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x-240,y,{steps:12});await page.mouse.up()}
- await expect.poll(async()=>Number(await gallery.getAttribute('data-position'))).toBeGreaterThan(.25);
+ await expect.poll(async()=>Number(await gallery.getAttribute('data-position'))).toBeGreaterThan(1.25);
  await expect(section).toHaveAttribute('data-moving','false',{timeout:10000});
  await expect.poll(async()=>{const value=Number(await gallery.getAttribute('data-position'));return Math.abs(value-Math.round(value))}).toBeLessThan(.002);
  await gallery.focus();const start=await page.evaluate(()=>scrollY);await page.mouse.move(box.x+box.width*.5,box.y+box.height*.5);await page.mouse.wheel(0,300);await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(start);
@@ -24,12 +24,12 @@ test('dragging and touch swiping move the gallery with momentum and settle',asyn
 
 test('reduced motion and unavailable WebGL retain readable selectable portraits',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');const section=page.locator('#people');await section.locator('.portrait-dome').scrollIntoViewIfNeeded();await expect(section).toHaveAttribute('data-gallery-mode','still');
- await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('A rhythm for reading');
+ await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');
  const accessibility=await new AxeBuilder({page}).include('#people').analyze();expect(accessibility.violations).toEqual([]);
  await page.emulateMedia({reducedMotion:'no-preference'});await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});
  await page.emulateMedia({reducedMotion:'reduce'});await expect(section).toHaveAttribute('data-gallery-mode','still');
  await page.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(this:HTMLCanvasElement,kind:string,...args:unknown[]){if(kind==='webgl')return null;return original.apply(this,[kind,...args] as Parameters<typeof original>)} as typeof original});
- await page.emulateMedia({reducedMotion:'no-preference'});await page.reload();await section.locator('.portrait-dome').scrollIntoViewIfNeeded();await expect(section).toHaveAttribute('data-gallery-mode','still');await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('A rhythm for reading');
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.reload();await section.locator('.portrait-dome').scrollIntoViewIfNeeded();await expect(section).toHaveAttribute('data-gallery-mode','still');await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');
 });
 
 test('gallery fits phone, landscape, tablet and wide layouts',async({page})=>{
@@ -49,5 +49,5 @@ test('portrait textures load from site assets and graphics loss restores the sti
  });expect(result).toEqual({created:true,fallback:false,error:0});
  await page.emulateMedia({reducedMotion:'no-preference'});const section=page.locator('#people');await section.locator('.portrait-dome').scrollIntoViewIfNeeded();await expect(section).toHaveAttribute('data-gallery-mode','interactive',{timeout:15000});
  await section.locator('canvas').evaluate(el=>el.dispatchEvent(new Event('webglcontextlost',{cancelable:true})));await expect(section).toHaveAttribute('data-gallery-mode','still');
- await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('A rhythm for reading');
+ await section.getByRole('button',{name:'Next studio portrait'}).click();await expect(section.locator('.ensemble-selection h3')).toHaveText('Care in the making');
 });
