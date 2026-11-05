@@ -41,7 +41,7 @@ export function CraftExperience({scene='cloth',compact=false}:{scene?:CraftScene
    <div className="craft-dialog-toolbar"><span>BookForge / The craft of a book</span><button type="button" autoFocus onClick={()=>dialog.current?.close()}>Close experience ×</button></div>
    <div className="craft-dialog-image"><CraftPicture id={detail.id} alt={detail.alt}/></div>
    <div className="craft-dialog-reading"><div><span className="kicker">{detail.label}</span><h2>{detail.title}</h2><p>{detail.copy}</p><a className="button" href={'/request-a-proposal?service='+detail.service}>Discuss this part of your book <Arrow/></a></div><nav aria-label="Choose a craft scene">{craftScenes.map((s,n)=><button type="button" key={s.id} aria-pressed={selected===n} onClick={()=>setSelected(n)}><span>{String(n+1).padStart(2,'0')}</span>{s.label}</button>)}</nav></div>
-   <p className="craft-provenance">Original cinematic studio imagery, created with AI. Illustrative scenes, not client publications or staff portraits.</p>
+   <p className="craft-provenance">Illustrative scenes, not client publications or staff portraits.</p>
   </dialog>
  </article>
 }

@@ -52,7 +52,7 @@ export function StudioEnsemble({people}:{people:StudioIntroduction[]}){
    <div className="ensemble-bio" id="studio-introduction-bio" aria-live="polite" aria-atomic="true"><p>{person.summary}</p>{person.href&&<Link className="text-link" href={person.href}>Read the introduction <Arrow/></Link>}</div>
   </div>
   <div className="ensemble-roster" role="group" aria-label="Choose a studio introduction">{entries.map((entry,index)=><button type="button" key={entry.id} disabled={!hydrated} aria-pressed={selected===index} aria-controls="studio-introduction-bio" onClick={()=>choose(index)}>{entry.placeholder?entry.role:entry.name}</button>)}</div>
-  {!people.length&&<p className="ensemble-content-note">Original cinematic studio imagery, created with AI. These scenes illustrate the craft; they are not staff portraits or client publications.</p>}
+  {!people.length&&<p className="ensemble-content-note">These scenes illustrate the craft; they are not staff portraits or client publications.</p>}
   <div className="ensemble-closing"><p>A personal collaboration, from the first conversation.</p><Link className="text-link" href="/request-a-proposal">Tell us about your book <Arrow/></Link></div>
  </section>;
 }

@@ -4,7 +4,7 @@
 
 `CinematicIntro` is a server-rendered component selected through the optional `PageIntro.scene` prop. Desktop uses a protected dark text field fading into photography. On phones, copy and imagery stack in normal document flow so longer service descriptions and quote buttons remain readable. Images have responsive local sources, dimensions and descriptive alternatives. The images are static and carry no added motion controls. Existing header and quote navigation is retained.
 
-The new editorial image was made with the built-in image_gen tool. Delivered assets are `public/craft/editing.webp` and `public/craft/editing-mobile.webp`. Other introductions reuse the original illustrative studio scenes. Captions distinguish AI-created studio imagery from client work. The supplied logo is unchanged.
+The new editorial image was made with the built-in image_gen tool. Delivered assets are `public/craft/editing.webp` and `public/craft/editing-mobile.webp`. Other introductions reuse the original illustrative studio scenes. Visible AI-created tags were removed at the owner?s request. Studio-study descriptions continue to distinguish these scenes from client work. The supplied logo is unchanged.
 
 Final generation prompt:
 
