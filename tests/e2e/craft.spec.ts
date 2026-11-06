@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 test('supplied logo, cinematic imagery and scene dialog replace empty slots',async({page})=>{
  await page.goto('/');await expect(page.locator('.site-header .brand-logo')).toBeVisible();
- await expect(page.locator('.site-header .brand-logo-name')).toHaveAttribute('src','/brand/bookforge-wordmark.png');
+ await expect(page.locator('.site-header .brand-logo-lockup')).toHaveAttribute('src','/brand/bookforge-bf-on-dark.png');
  await expect(page.locator('.content-placeholder,.portrait-placeholder,.sample-empty')).toHaveCount(0);
  await expect(page.locator('.craft-work-grid .craft-experience')).toHaveCount(2);
  const open=page.getByRole('button',{name:'Explore cover craft',exact:true});await open.click();

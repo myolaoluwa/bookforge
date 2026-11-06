@@ -62,6 +62,19 @@ export default defineConfig(async ({ command }) => {
         inspectorPort: false,
         config: {
           ...localBindingConfig,
+          ...(command === "build"
+            ? {
+                workers_dev: true,
+                routes: [
+                  { pattern: "bookforge.ink", custom_domain: true },
+                  { pattern: "www.bookforge.ink", custom_domain: true },
+                ],
+                vars: {
+                  SITE_ORIGIN: "https://bookforge.ink",
+                  SITE_INDEXABLE: "false",
+                },
+              }
+            : {}),
           ...(command === "serve"
             ? {
                 services: [

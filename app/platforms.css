@@ -1,0 +1,38 @@
+.publishing-platforms{background:var(--paper);color:var(--ink);padding:42px 0 36px;border-bottom:1px solid var(--paper-line)}
+.platforms-heading{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px}
+.platforms-heading h2{font:400 28px/1.15 var(--serif);letter-spacing:-.02em}
+.platforms-heading p{font-size:12px;line-height:1.6;color:var(--paper-muted)}
+.platforms-window{overflow:hidden;position:relative;outline-offset:-5px;mask-image:linear-gradient(to right,transparent,#111 5%,#111 95%,transparent)}
+.platforms-track{display:flex;width:max-content;animation:publishing-drift 120s linear infinite;will-change:transform}
+.platforms-group{display:flex;align-items:center;gap:72px;padding-right:72px;flex-shrink:0}
+.platform-mark{display:flex;align-items:center;justify-content:center;width:250px;height:76px;flex-shrink:0}
+.platform-mark img{display:block;width:100%;height:auto;max-height:50px;object-fit:contain}
+.platform-mark-lulu img{width:118px;max-height:55px}
+.platform-mark-ingramspark img{width:230px}
+.platform-mark-rakuten-kobo img{width:210px}
+.platform-mark-apple-books{gap:12px;font-size:25px;font-weight:600;letter-spacing:-.04em}
+.platform-mark-apple-books img{width:50px;height:50px}
+.platforms-window:focus-within .platforms-track{animation-play-state:paused}
+@media(hover:hover){.platforms-window:hover .platforms-track{animation-play-state:paused}}
+@keyframes publishing-drift{to{transform:translateX(-50%)}}
+@media(max-width:700px){
+ .publishing-platforms{padding:30px 0 24px}
+ .platforms-heading{display:block;margin-bottom:16px}
+ .platforms-heading h2{font-size:25px}
+ .platforms-heading p{margin-top:8px;font-size:11px}
+ .platforms-group{gap:44px;padding-right:44px}
+ .platform-mark{width:186px;height:66px}
+ .platform-mark img{max-height:40px}
+ .platform-mark-lulu img{width:96px;max-height:46px}
+ .platform-mark-ingramspark img{width:180px}
+ .platform-mark-rakuten-kobo img{width:170px}
+ .platform-mark-apple-books{gap:8px;font-size:21px}
+ .platform-mark-apple-books img{width:40px;height:40px}
+}
+@media(prefers-reduced-motion:reduce){
+ .platforms-track{animation:none;transform:none;will-change:auto;width:100%}
+ .platforms-group{width:100%;gap:32px;padding:0 32px;justify-content:center;flex-wrap:wrap}
+ .platforms-group:nth-child(2),.platforms-group>.platform-mark[data-repeat]{display:none}
+ .platform-mark{max-width:230px;flex:0 1 230px}
+ .platforms-window{mask-image:none}
+}

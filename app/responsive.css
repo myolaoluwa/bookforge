@@ -28,3 +28,42 @@
 @media(min-width:480px) and (max-height:560px) and (orientation:landscape){.cinema-content{padding-top:128px}}
 @media(min-width:480px) and (max-width:760px) and (max-height:400px) and (orientation:landscape){.cinema-content{padding-top:112px}}
 @media(min-width:480px) and (max-height:300px) and (orientation:landscape){.cinema-content{padding-top:88px}}
+/* Keep desktop actions in document flow with enough space for wrapped copy.
+   A fixed viewport height must not squeeze text into neighbouring controls. */
+@media(min-width:761px) and (min-height:561px){
+ .cinematic-hero{height:auto;min-height:100svh}
+ .cinema-content{height:auto;min-height:max(800px,100svh);padding-top:clamp(168px,20svh,216px);padding-bottom:144px}
+ .cinema-content>*{flex-shrink:0}
+ .cinema-actions{gap:20px 32px;max-width:100%;align-items:center}
+ .cinema-actions>a{flex:none;position:relative;min-height:48px}
+}
+/* Approved author story: keep the longer message clear above its actions. */
+.author-story-hero .cinema-content h1{font-size:clamp(60px,5.5vw,96px);line-height:.94}
+.author-story-hero .cinema-content .hero-description{max-width:56ch;line-height:1.6}
+@media(min-width:761px) and (max-height:780px){
+ .author-story-hero .cinema-content h1{font-size:56px;margin-bottom:20px}
+ .author-story-hero .cinema-content .kicker{font-size:12px;margin-bottom:12px}
+ .author-story-hero .cinema-content .hero-description{margin-bottom:20px}
+}
+@media(max-width:760px) and (orientation:portrait){
+ .author-story-hero .cinema-content h1{font-size:clamp(36px,9.5vw,60px)}
+ .author-story-hero .cinema-content .hero-description{max-width:44ch}
+}
+@media(max-width:380px) and (orientation:portrait){
+ .author-story-hero .cinema-content .kicker{display:none}
+ .author-story-hero .cinema-content h1{margin-bottom:20px}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .author-story-hero .cinema-content h1{font-size:36px}
+}
+@media(max-height:320px) and (orientation:landscape){
+ .author-story-hero .cinema-content h1{font-size:28px}
+}
+@media(max-width:760px) and (max-height:400px) and (orientation:landscape){
+ .author-story-hero .cinema-content{padding-top:96px}
+ .author-story-hero .cinema-content h1{font-size:28px;margin-bottom:10px}
+ .author-story-hero .cinema-content .hero-description{line-height:1.4;margin-bottom:10px}
+}
+@media(max-height:300px) and (orientation:landscape){
+ .author-story-hero .cinema-content{padding-top:88px}
+}

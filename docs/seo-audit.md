@@ -14,3 +14,19 @@ The Goodreads query did not provide enough reliable niche service evidence in th
 
 Remaining: select target countries with the owner, conduct localized research, connect real Search Console, review original specialist-authored articles, approve portfolio evidence and validate the final origin, social sharing image and production indexing settings. A raster PNG variant of the existing brand sharing graphic is generated and referenced by metadata; real social-platform preview checks remain a launch task.
 
+
+
+## Author-focused metadata, 6 November 2026
+
+Search titles and descriptions for main routes, services and author checklists are maintained in lib/bookforge/metadata-copy.ts. Search copy names the service and its benefit to an independent author; social headlines use a warmer invitation with the same accurate description. Dynamic portfolio, article and team records keep their supplied metadata. No invented results, awards or endorsements are used.
+
+The homepage search title is Book Editing, Formatting & Cover Design | BookForge. Existing service-specific 1200x630 PNG sharing images remain in use. The default canonical origin now points to the current Cloudflare deployment, with SITE_ORIGIN taking precedence for a future custom domain. Indexing remains controlled by SITE_INDEXABLE; this copy update does not enable it.
+
+
+## Cinematic social preview artwork, 6 November 2026
+
+Replaced the six v1 link-preview references with versioned v2 PNGs. Original 1200x630 editorial compositions combine the supplied BookForge symbol and wordmark, local Cormorant/Manrope fonts, and a generated photographic book still life. The homepage reads: Your story. Beautifully finished. Each service category has its own headline; alt descriptions match the new artwork. No client book or publication is implied.
+
+Reproduce the cards with node scripts/generate-social-previews.mjs. The background is public/brand/share/bookforge-cinematic-still.webp. Source generation: built-in imagegen, exec-f4904999-43d9-4e20-92cb-5bd6e66f35bc.png; cinematic forest-green clothbound book, ivory book stack, open pages and fountain pen on walnut, warm copper light, dark negative space at left, no lettering or logos. Supplied logo is composited separately without redrawing it.
+
+Fresh image URLs allow social crawlers to retrieve the redesign. Platforms can retain cached previews for previously shared page URLs.

@@ -1,9 +1,9 @@
 export function resolveSiteOrigin(value:string|undefined){
- const fallback='https://folio-book-studio.myolaoluwa.chatgpt.site';
+ const fallback='https://bookforge.ink';
  try{const url=new URL(value||fallback);return ['https:','http:'].includes(url.protocol)&&!url.username&&!url.password?url.origin:fallback}catch{return fallback}
 }
 export const site = {
- name:'Bookforge Publishing Studio',
+ name:'BookForge Publishing Studio',
  origin:resolveSiteOrigin(process.env.SITE_ORIGIN),
  indexable:process.env.SITE_INDEXABLE === 'true',
  contact:process.env.CONTACT_EMAIL || '',

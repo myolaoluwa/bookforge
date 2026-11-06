@@ -3,6 +3,7 @@ import {ServiceFinder} from '@/components/bookforge/service-finder';
 import {AuthorProof,SelectedWork,StudioPeople,ConsultationLink} from '@/components/bookforge/trust';
 import {CTA,Arrow} from '@/components/bookforge/ui';
 import {CinematicHero} from '@/components/bookforge/cinematic-hero';
+import {PublishingPlatforms} from '@/components/bookforge/publishing-platforms';
 import {services,steps} from '@/lib/bookforge/content';
 import {metadata} from '@/lib/bookforge/seo';
 
@@ -10,6 +11,7 @@ export const generateMetadata=()=>metadata('Book editing, formatting & cover des
 
 export default function Home(){return <div className="studio-home">
   <CinematicHero/>
+  <PublishingPlatforms/>
   <section id="craft" className="paper-section">
     <div className="wrap craft-intro">
       <p className="kicker">A publishing studio for independent authors</p>

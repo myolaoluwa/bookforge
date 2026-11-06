@@ -1,7 +1,10 @@
 import type {Metadata} from 'next';
 import {site} from './config';
 import {socialCardFor,socialCards,socialCopyFor} from './social';
+import {authorMetadata} from './metadata-copy';
 export function metadata(title:string,description:string,path:string):Metadata{
+ const copy=authorMetadata[path];
+ title=copy?.title||title;description=copy?.description||description;
  const card=socialCards[socialCardFor(path)];const social=socialCopyFor(path,title,description);
  const imageUrl=site.origin+'/brand/share/'+card.file;
  const image={url:imageUrl,...(imageUrl.startsWith('https:')?{secureUrl:imageUrl}:{}),width:1200,height:630,type:'image/png',alt:card.alt};
