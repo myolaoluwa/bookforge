@@ -3,14 +3,15 @@ import {inquiriesReady} from '@/lib/bookforge/config';
 import {serviceClient} from '@/lib/bookforge/database';
 import {json,sameOrigin,smallJson} from '@/lib/bookforge/http';
 import {deliverInquiryEmails} from '@/lib/bookforge/mail';
+import {inquiryProjectDescription} from '@/lib/bookforge/inquiry-options';
 async function hash(text:string){const value=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));return Array.from(new Uint8Array(value),b=>b.toString(16).padStart(2,'0')).join('')}
 export async function POST(request:Request){
  if(!sameOrigin(request))return json({message:'This request must come from the studio website.'},403);
  if(!inquiriesReady())return json({message:'Inquiry delivery is not configured. No information has been saved or sent.'},503);
  let input:unknown;try{input=await smallJson(request)}catch{return json({message:'We could not read this inquiry. Please check the form.'},400)}
  const parsed=inquirySchema.safeParse(input);if(!parsed.success)return json({message:'Check your contact information, service, project description and consent.',fields:parsed.error.flatten().fieldErrors},422);
- const {turnstileToken,requestId,...raw}=parsed.data;
- const details={...raw,website:undefined};
+ const {turnstileToken,requestId,serviceOther,stageOther,...fields}=parsed.data;
+ const details={...fields,description:inquiryProjectDescription({...fields,serviceOther,stageOther}),website:undefined};
  try{
   const verify=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:new URLSearchParams({secret:process.env.TURNSTILE_SECRET_KEY!,response:turnstileToken,idempotency_key:requestId}),signal:AbortSignal.timeout(10000)});const verdict=await verify.json() as {success:boolean;hostname?:string;action?:string};
   if(!verdict.success||verdict.hostname!==new URL(request.url).hostname||verdict.action!=='proposal')return json({message:'Verification expired or failed. Please complete it again.'},422);

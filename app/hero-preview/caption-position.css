@@ -1,0 +1,19 @@
+/* Keep the existing hero. Move only its changing film caption. */
+.caption-top-hero .cinema-story{top:160px;bottom:auto}
+@media(min-width:761px) and (max-width:1100px){
+ .caption-top-hero .cinema-story{top:160px}
+ .caption-top-hero .cinema-content h1,.caption-top-hero .cinema-content .hero-description,.caption-top-hero .cinema-actions{max-width:calc(100% - 232px)}
+}
+@media(max-width:760px) and (orientation:portrait){
+ .caption-top-hero .cinema-story{order:-1;top:auto;position:relative;margin:128px 24px 0;min-height:144px;max-width:300px}
+ .caption-top-hero .cinema-content{padding-top:32px}
+ .caption-top-hero .cinema-story p{min-height:84px}
+}
+@media(min-width:480px) and (max-height:560px) and (orientation:landscape){
+ .caption-top-hero .cinema-story{top:128px;bottom:auto}
+ .caption-top-hero .cinema-content h1,.caption-top-hero .cinema-content .hero-description,.caption-top-hero .cinema-actions{max-width:calc(100% - 224px)}
+}
+@media(max-width:479px) and (orientation:landscape){
+ .caption-top-hero .cinema-story{position:relative;order:-1;top:auto;bottom:auto;margin:112px 24px 0}
+ .caption-top-hero .cinema-content{padding-top:24px}
+}

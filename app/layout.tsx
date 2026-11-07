@@ -12,6 +12,7 @@ import './ensemble.css';
 import './craft.css';
 import './inner-cinema.css';
 import './platforms.css';
+import './reviews.css';
 import './brand.css';
 export const metadata:Metadata={...pageMetadata('Bookforge Publishing Studio','Book editing, formatting, cover design and publishing support for independent authors.','/'),title:{default:'BookForge | Your Story, Beautifully Finished',template:'%s | BookForge'},applicationName:site.name,referrer:'strict-origin-when-cross-origin'};
 export const viewport={themeColor:'#111b1d',viewportFit:'cover'};
