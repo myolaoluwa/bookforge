@@ -5,7 +5,8 @@
 | Studio name / services / positioning | Proposed in vision | Preview copy; agency owner must confirm actual delivery scope |
 | Reference animation + soundtrack | User supplied | Cinematic hero; preserve the existing film and soundtrack; confirm web usage rights before public launch |
 | Book covers, spreads, client names | No | Empty portfolio; no fake clients |
-| Adele, Rachel, Ava biographies/portraits/consent | No | No invented public profiles; unpublished team records only |
+| Adele biography / portrait | Owner supplied | Full Adele Affie bio supplied 8 November 2026; Studio Director; portrait and profile at /team/adele, with Fiverr source link |
+| Rachel / Eva portraits and introductions | Portraits supplied; full biographies pending | Keep their supplied names and portraits; do not invent career history |
 | Testimonials | No | Empty state; no ratings schema |
 | Hero book artwork | Original code illustration | Labeled studio study, never a completed client book |
 | Business identity, location, inbox, retention/legal | No | TBD for owner; staging policy clearly labeled |

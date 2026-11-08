@@ -1,0 +1,12 @@
+.adele-profile-layout{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px;align-items:start}
+.adele-profile-layout .detail-cover{display:block;width:100%;height:auto;max-width:none}
+.adele-profile-credit{margin-top:24px;font-size:18px;color:var(--ink)}
+.adele-profile-credit span{display:block;font-size:14px;color:var(--paper-muted);margin-top:4px}
+.adele-profile-layout aside .text-link{font-size:14px;line-height:24px;white-space:normal;overflow-wrap:anywhere}
+.adele-profile-layout .prose{min-width:0}
+.adele-profile-layout .prose h2{font-size:36px;line-height:40px;margin:40px 0 24px}
+.adele-expertise{list-style:none;padding:0;margin:0 0 40px}
+.adele-profile-layout .adele-expertise li{padding:0;margin:0 0 24px}
+.adele-profile-layout .adele-expertise h3{font:600 16px/24px var(--sans);margin:0 0 8px;color:var(--ink)}
+.adele-profile-layout .adele-expertise p{margin:0}
+@media(max-width:760px){.adele-profile-layout{grid-template-columns:1fr;gap:40px}.adele-profile-layout aside{max-width:480px}.adele-profile-layout .prose h2{font-size:30px;line-height:36px}}
